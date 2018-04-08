@@ -12,6 +12,10 @@ public class BallScript : MonoBehaviour {
     int wallMask;
     Vector3 direction;
 
+    Ray frontRay;
+    RaycastHit hitPoint;
+    public float range = 200f;
+
     void Awake()
     {
         wallMask = LayerMask.GetMask("Walls");
@@ -33,6 +37,20 @@ public class BallScript : MonoBehaviour {
         //direction = Vector3.Normalize(transform.forward);
         if(ballStopped == false)
         {
+            frontRay.origin = transform.position;
+            frontRay.direction = direction;
+
+            if(Physics.Raycast (frontRay, out hitPoint, range, wallMask))
+            {
+                print(hitPoint.point);
+
+            }
+            else
+            {
+                //We can use this part to put the ball inside the map if, for any reason, it leaves the area.
+                print("no choca");
+            }
+
             //It works this way, but Vector3.forward is (0,0,1)... WHY????????????????????
             //transform.Translate(Vector3.forward * velocity * Time.deltaTime);
             transform.Translate(direction * velocity * Time.deltaTime, Space.World);
@@ -71,6 +89,8 @@ public class BallScript : MonoBehaviour {
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position, transform.position + direction * 2);
+        Gizmos.color = Color.black;
+        Gizmos.DrawLine(transform.position, hitPoint.point);
     }
 
 
