@@ -43,14 +43,16 @@ public class BallScript : MonoBehaviour {
 
             if(Physics.Raycast (frontRay, out hitPoint, range, wallMask))
             {
+                #region Calculating new position and distance
                 auxiliar.position=transform.position;
                 auxiliar.Translate(direction * velocity * Time.deltaTime, Space.World);
                 print("Nuestra posición: "+transform.position+ "Sigiuente posicion: "+ auxiliar.position);
-                
                 float nextStepDist = Vector3.Distance(transform.position, auxiliar.position);
                 float distToHit = Vector3.Distance(transform.position, hitPoint.point);
                 print("Distancia al sigiuente paso: " + nextStepDist);
                 print("Distancia al hit: " + distToHit);
+                #endregion
+
                 if (nextStepDist >= distToHit)  //With the previous calculations, this will be the part of bouncing.
                 {
                     print("Se sale fuera");
