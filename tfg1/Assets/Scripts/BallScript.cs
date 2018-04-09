@@ -15,6 +15,7 @@ public class BallScript : MonoBehaviour {
     Ray frontRay;
     RaycastHit hitPoint;
     public float range = 200f;
+    public Transform auxiliar;
 
     void Awake()
     {
@@ -42,8 +43,19 @@ public class BallScript : MonoBehaviour {
 
             if(Physics.Raycast (frontRay, out hitPoint, range, wallMask))
             {
-                print(hitPoint.point);
-
+                auxiliar.position=transform.position;
+                auxiliar.Translate(direction * velocity * Time.deltaTime, Space.World);
+                print("Nuestra posición: "+transform.position+ "Sigiuente posicion: "+ auxiliar.position);
+                
+                float nextStepDist = Vector3.Distance(transform.position, auxiliar.position);
+                float distToHit = Vector3.Distance(transform.position, hitPoint.point);
+                print("Distancia al sigiuente paso: " + nextStepDist);
+                print("Distancia al hit: " + distToHit);
+                if (nextStepDist >= distToHit)  //With the previous calculations, this will be the part of bouncing.
+                {
+                    print("Se sale fuera");
+                }
+                
             }
             else
             {
@@ -54,7 +66,10 @@ public class BallScript : MonoBehaviour {
             //It works this way, but Vector3.forward is (0,0,1)... WHY????????????????????
             //transform.Translate(Vector3.forward * velocity * Time.deltaTime);
             transform.Translate(direction * velocity * Time.deltaTime, Space.World);
-           
+            auxiliar.Translate(direction * velocity * Time.deltaTime, Space.World); //this is for viewing in the editor.
+
+            
+
         }
     }
 
