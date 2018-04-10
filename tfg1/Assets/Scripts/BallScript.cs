@@ -36,6 +36,11 @@ public class BallScript : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        #region adjusting values of position and rotation
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        transform.rotation = new Quaternion(0,transform.rotation.y,transform.rotation.z,transform.rotation.w);
+        #endregion
+
         direction = Vector3.Normalize(transform.forward);
         //direction = Vector3.Normalize(transform.forward);
         if(ballStopped == false)
