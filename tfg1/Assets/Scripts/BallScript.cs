@@ -65,12 +65,15 @@ public class BallScript : MonoBehaviour {
 
                 if (nextStepDist >= distToHit)  //With the previous calculations, this will be the part of bouncing.
                 {
-                    transform.position = hitPoint.point - transform.forward * 2;
-                    Quaternion reflRotation = new Quaternion();
+                    Quaternion reflRotation = Quaternion.LookRotation(reflection);
                     //reflRotation.Set(reflection.x, reflection.y, reflection.z, 0);
                     //reflRotation = Quaternion.
-                    //changeDirection(reflRotation);
+                    changeDirection(reflRotation);
+                    //transform.position = hitPoint.point + Vector3.Normalize( transform.forward);
+                    transform.position = hitPoint.point;
                     auxiliar.position = transform.position;
+                    direction = Vector3.Normalize(transform.forward);
+                    
                     print("Se sale fuera");
                 }
                 else
