@@ -63,10 +63,10 @@ public class BallScript : MonoBehaviour {
                 //print("Distancia al hit: " + distToHit);
                 #endregion
 
-                print("Vector normal: " + hitPoint.normal);
+                //print("Vector normal: " + hitPoint.normal);
                 
                 reflection =Vector3.Normalize(Vector3.Reflect(direction, hitPoint.normal));
-                print("Vector reflejado: "+reflection);
+                //print("Vector reflejado: "+reflection);
 
                 if (nextStepDist >= distToHit)  //With the previous calculations, this will be the part of bouncing.
                 {
