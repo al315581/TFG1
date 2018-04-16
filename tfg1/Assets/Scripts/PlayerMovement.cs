@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject ball;
     Vector3 direction;
 
+    public string HorizontalCtrl = "Horizontal_P1";
+    public string VerticalCtrl = "Vertical_P1";
+    public string FireCtrl = "Fire1_P1";
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -29,8 +33,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw(HorizontalCtrl);
+        float v = Input.GetAxisRaw(VerticalCtrl);
 
         Move(h, v);
 
@@ -64,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetButtonDown(FireCtrl))
         {
             if (ballSript.playerNear)
             {

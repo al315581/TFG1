@@ -19,6 +19,8 @@ public class BallScript : MonoBehaviour {
 
     Vector3 reflection;
 
+    public Material neutralMaterial, p1Material, p2Material;
+
     void Awake()
     {
         wallMask = LayerMask.GetMask("Walls");
@@ -27,6 +29,8 @@ public class BallScript : MonoBehaviour {
 	void Start () {
         ballStopped = true;
         direction = transform.forward;
+        GetComponent<Renderer>().material = neutralMaterial;
+        
 	}
 	
 	// Update is called once per frame
@@ -93,9 +97,6 @@ public class BallScript : MonoBehaviour {
                 print("no choca");
             }
 
-            //It works this way, but Vector3.forward is (0,0,1)... WHY????????????????????
-            //transform.Translate(Vector3.forward * velocity * Time.deltaTime);
-            
             auxiliar.Translate(direction * velocity * Time.deltaTime, Space.World); //this is for viewing in the editor.
 
             
