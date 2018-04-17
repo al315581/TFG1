@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreP2Script : MonoBehaviour {
 
-    public static float scoreP2;
+    public static int scoreP2;
     Text text;
 
     void Awake()
@@ -22,7 +22,7 @@ public class ScoreP2Script : MonoBehaviour {
     void Update()
     {
 
-        text.text = Mathf.RoundToInt(scoreP2).ToString();
+        text.text = scoreP2.ToString();
 
     }
 }

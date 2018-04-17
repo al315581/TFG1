@@ -5,8 +5,9 @@ using UnityEngine;
 public class GamMan : MonoBehaviour {
 
     public GameObject ball;
-    enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch};   //we use short for optimization
-    stateOfMatch state;
+   public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch};   //we use short for optimization
+    public static stateOfMatch state;
+
 
     public Transform startPointP1, startPointP2;
 
@@ -33,8 +34,22 @@ public class GamMan : MonoBehaviour {
                 }
                 print("no ha empezado");
                 break;
+
             case stateOfMatch.running:
                 print("empezamos");
+                break;
+
+            case stateOfMatch.endPoint:
+                ball.GetComponent<BallScript>().ballStopped = true;
+                ball.transform.position = startPointP1.position;
+                state = stateOfMatch.startPoint;
+                break;
+
+            case stateOfMatch.startPoint:
+                if (!ball.GetComponent<BallScript>().ballStopped)
+                {
+                    state = stateOfMatch.running;
+                }
                 break;
         }
 	}
