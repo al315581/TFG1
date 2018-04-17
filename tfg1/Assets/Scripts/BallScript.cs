@@ -7,6 +7,8 @@ public class BallScript : MonoBehaviour {
     public bool playerNear = false;
     public bool ballStopped;
     public float velocity = 1f;
+    public float velocityIncrease = 1f;
+    public float initialVelocity;
 
     private Transform wallHitPoint; //With raycast we will see the point where the ball will collide;
     int wallMask;
@@ -30,6 +32,7 @@ public class BallScript : MonoBehaviour {
         ballStopped = true;
         direction = transform.forward;
         GetComponent<Renderer>().material = neutralMaterial;
+        initialVelocity = velocity;
         
 	}
 	
@@ -124,7 +127,14 @@ public class BallScript : MonoBehaviour {
         }
     }
 
- 
+    public void IncreaseSpeed()
+    {
+        velocity += velocityIncrease;
+    }
+    public void ResetVelocity()
+    {
+        velocity = initialVelocity;
+    }
 
     public void changeDirection(Quaternion _rotation)
     {

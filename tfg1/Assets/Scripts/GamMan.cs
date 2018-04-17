@@ -8,6 +8,9 @@ public class GamMan : MonoBehaviour {
    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch};   //we use short for optimization
     public static stateOfMatch state;
 
+    public enum pointOfStart : short { player1, player2 };
+    public static pointOfStart point;
+
 
     public Transform startPointP1, startPointP2;
 
@@ -17,6 +20,7 @@ public class GamMan : MonoBehaviour {
         ScoreP1Script.scoreP1 = 0;
         ScoreP2Script.scoreP2 = 0;
         state = stateOfMatch.notStarted;
+        point = pointOfStart.player1;
         
 	}
 	
@@ -36,13 +40,24 @@ public class GamMan : MonoBehaviour {
                 break;
 
             case stateOfMatch.running:
-                print("empezamos");
+                //print("empezamos");
                 break;
 
             case stateOfMatch.endPoint:
+
                 ball.GetComponent<BallScript>().ballStopped = true;
-                ball.transform.position = startPointP1.position;
+
+                if (point == pointOfStart.player1)
+                {
+                    ball.transform.position = startPointP1.position;
+                }
+                else
+                {
+                    ball.transform.position = startPointP2.position;
+                }
+                
                 state = stateOfMatch.startPoint;
+                ball.GetComponent<BallScript>().ResetVelocity();
                 break;
 
             case stateOfMatch.startPoint:
