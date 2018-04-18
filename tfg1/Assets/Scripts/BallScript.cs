@@ -149,6 +149,31 @@ public class BallScript : MonoBehaviour {
         gamMan.shakeCameraWithWall();
     }
 
+    public void ChangeMaterial(string p)
+    {
+        if (p == "P1")
+        {
+            ChangeMaterialToP1();
+            print("cambiamos material a p1");
+        }
+        else ChangeMaterialToP2();
+    }
+
+    private void ChangeMaterialToP1()
+    {
+        GetComponent<Renderer>().material = p1Material;
+    }
+
+    private void ChangeMaterialToP2()
+    {
+        GetComponent<Renderer>().material = p2Material;
+    }
+    public void ResetMaterial()
+    {
+        GetComponent<Renderer>().material = neutralMaterial;
+
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;

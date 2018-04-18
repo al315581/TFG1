@@ -35,4 +35,11 @@ public class SkyboxChanger : MonoBehaviour
 
     }
 
+    public void ResetSkybox()
+    {
+        skybox = 0;
+        RenderSettings.skybox = Skyboxes[skybox];
+
+    }
+
 }

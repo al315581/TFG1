@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (ballSript.playerNear)
             {
+                ballSript.ChangeMaterial(this.gameObject.name);
                 //ball.transform.rotation = transform.rotation;
                 ballSript.changeDirection(transform.rotation);
                 ballSript.ballStopped = false;

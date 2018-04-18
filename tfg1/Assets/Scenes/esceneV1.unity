@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06302156, g: 0.20265824, b: 0.27387905, a: 1}
+  m_IndirectSpecularColor: {r: 0.150625, g: 0.4660722, b: 0.6127837, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -960,6 +960,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 1819269158}
+  velocityLevel1Limit: 40
+  velocityLevel2Limit: 80
+  velocityLevel3Limit: 0
+  velocityLevel4Limit: 0
   cameraShakeValuesPlayerDead:
   - 5
   - 5
@@ -972,6 +976,7 @@ MonoBehaviour:
   - 1
   startPointP1: {fileID: 1444517966}
   startPointP2: {fileID: 1693773216}
+  skyBoxChanger: {fileID: 638586130}
 --- !u!4 &695917073
 Transform:
   m_ObjectHideFlags: 0
@@ -1150,13 +1155,18 @@ Prefab:
     - target: {fileID: 135839025743054160, guid: ed9ea552eaaaf214aaccfadc937f4cbf,
         type: 2}
       propertyPath: m_Radius
-      value: 2.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 114980389753547000, guid: ed9ea552eaaaf214aaccfadc937f4cbf,
         type: 2}
       propertyPath: gamMan
       value: 
       objectReference: {fileID: 695917072}
+    - target: {fileID: 114980389753547000, guid: ed9ea552eaaaf214aaccfadc937f4cbf,
+        type: 2}
+      propertyPath: velocityIncrease
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed9ea552eaaaf214aaccfadc937f4cbf, type: 2}
   m_IsPrefabParent: 0

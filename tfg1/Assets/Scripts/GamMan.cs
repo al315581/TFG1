@@ -12,15 +12,20 @@ public class GamMan : MonoBehaviour {
     public enum pointOfStart : short { player1, player2 };
     public static pointOfStart point;
 
+
+   
     public enum velocityLevel : short { level1, level2, level3, level4};
     public static velocityLevel velLev;
-
+    public float velocityLevel1Limit, velocityLevel2Limit, velocityLevel3Limit, velocityLevel4Limit;
 
     public List<float> cameraShakeValuesPlayerDead = new List<float>();
     public List<float> cameraShakeValuesLevel1 = new List<float>();
 
 
     public Transform startPointP1, startPointP2;
+    public SkyboxChanger skyBoxChanger;
+
+    
 
 	// Use this for initialization
 	void Start () {
@@ -38,10 +43,6 @@ public class GamMan : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         TimerScript.matchTime -= Time.deltaTime;
-
-
-
-
         switch (state){
             case stateOfMatch.notStarted:
                 ball.transform.position = startPointP1.position;
@@ -53,6 +54,7 @@ public class GamMan : MonoBehaviour {
                 break;
 
             case stateOfMatch.running:
+                doChangesWhileRunning();
                 //print("empezamos");
                 break;
 
@@ -71,6 +73,7 @@ public class GamMan : MonoBehaviour {
                 
                 state = stateOfMatch.startPoint;
                 ball.GetComponent<BallScript>().ResetVelocity();
+                ball.GetComponent<BallScript>().ResetMaterial();
                 break;
 
             case stateOfMatch.startPoint:
@@ -81,6 +84,26 @@ public class GamMan : MonoBehaviour {
                 break;
         }
 	}
+
+    private void doChangesWhileRunning()
+    {
+        switch (velLev)
+        {
+            case velocityLevel.level1:
+                if (ball.GetComponent<BallScript>().velocity > velocityLevel1Limit)
+                {
+                    velLev = velocityLevel.level2;
+                    skyBoxChanger.ChangeSkybox();
+                }
+                break;
+
+            case velocityLevel.level2:
+                break;
+        }
+    }
+
+
+
 
     public void shakeCameraWithWall()
     {
@@ -93,6 +116,7 @@ public class GamMan : MonoBehaviour {
                 break;
         }
     }
+
 
     public void shakeCameraPlayerDead()
     {
