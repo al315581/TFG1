@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class GamMan : MonoBehaviour {
 
@@ -14,6 +15,8 @@ public class GamMan : MonoBehaviour {
     public enum velocityLevel : short { level1, level2, level3, level4};
     public static velocityLevel velLev;
 
+    public List<float> cameraShakeValuesLevel1 = new List<float>();
+
 
     public Transform startPointP1, startPointP2;
 
@@ -25,6 +28,8 @@ public class GamMan : MonoBehaviour {
         state = stateOfMatch.notStarted;
         point = pointOfStart.player1;
         velLev = velocityLevel.level1;
+        
+
         
 	}
 	
@@ -74,4 +79,16 @@ public class GamMan : MonoBehaviour {
                 break;
         }
 	}
+
+    public void shakeCameraWithWall()
+    {
+        switch (velLev)
+        {
+            case velocityLevel.level1:
+                CameraShaker.Instance.ShakeOnce(cameraShakeValuesLevel1[0],cameraShakeValuesLevel1[1], cameraShakeValuesLevel1[2], cameraShakeValuesLevel1[3]);
+                //CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 0.5f);
+                
+                break;
+        }
+    }
 }

@@ -23,6 +23,8 @@ public class BallScript : MonoBehaviour {
 
     public Material neutralMaterial, p1Material, p2Material;
 
+    public GamMan gamMan;
+
     void Awake()
     {
         wallMask = LayerMask.GetMask("Walls");
@@ -77,6 +79,7 @@ public class BallScript : MonoBehaviour {
 
                 if (nextStepDist >= distToHit)  //With the previous calculations, this will be the part of bouncing.
                 {
+                    shakeCameraWithWall();
                     Quaternion reflRotation = Quaternion.LookRotation(reflection);
                     //reflRotation.Set(reflection.x, reflection.y, reflection.z, 0);
                     //reflRotation = Quaternion.
@@ -139,6 +142,11 @@ public class BallScript : MonoBehaviour {
     public void changeDirection(Quaternion _rotation)
     {
         transform.rotation = _rotation;
+    }
+
+    private void shakeCameraWithWall()
+    {
+        gamMan.shakeCameraWithWall();
     }
 
     void OnDrawGizmos()
