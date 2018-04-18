@@ -15,6 +15,8 @@ public class GamMan : MonoBehaviour {
     public enum velocityLevel : short { level1, level2, level3, level4};
     public static velocityLevel velLev;
 
+
+    public List<float> cameraShakeValuesPlayerDead = new List<float>();
     public List<float> cameraShakeValuesLevel1 = new List<float>();
 
 
@@ -90,5 +92,10 @@ public class GamMan : MonoBehaviour {
                 
                 break;
         }
+    }
+
+    public void shakeCameraPlayerDead()
+    {
+        CameraShaker.Instance.ShakeOnce(cameraShakeValuesPlayerDead[0], cameraShakeValuesPlayerDead[1], cameraShakeValuesPlayerDead[2], cameraShakeValuesPlayerDead[3]);
     }
 }

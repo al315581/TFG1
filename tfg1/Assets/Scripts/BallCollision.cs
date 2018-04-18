@@ -18,6 +18,7 @@ public class BallCollision : MonoBehaviour {
     {
         if(other.tag == "Player" && !ballScript.ballStopped )
         {
+            GetComponentInParent<BallScript>().gamMan.shakeCameraPlayerDead();
             //Destroy(other.gameObject);
             GamMan.state = GamMan.stateOfMatch.endPoint;
 
