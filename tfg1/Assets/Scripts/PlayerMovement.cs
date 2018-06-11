@@ -19,6 +19,10 @@ public class PlayerMovement : MonoBehaviour {
     public string VerticalCtrl = "Vertical_P1";
     public string FireCtrl = "Fire1_P1";
 
+
+    public bool isHitting = false;
+    Animator anim;
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         direction = transform.forward;
     }
 
@@ -36,18 +41,30 @@ public class PlayerMovement : MonoBehaviour {
         float h = Input.GetAxisRaw(HorizontalCtrl);
         float v = Input.GetAxisRaw(VerticalCtrl);
 
-        Move(h, v);
+        //initially move() was here, but moved to the end
 
         if(h==0 && v == 0)
         {
+            anim.SetBool("Running", false);
             //Rotate(lastH, lastV);
         }
         else
         {
-            Rotate(h, v);
-            lastH = h;
-            lastV = v;
+            if (!isHitting)
+            {
+                anim.SetBool("Running", true);
+                Rotate(h, v);
+                lastH = h;
+                lastV = v;
+            }
+
         }
+        if (!isHitting)
+        {
+            Move(h, v);
+        }
+
+
 
     }
 
@@ -70,6 +87,9 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown(FireCtrl))
         {
+            anim.SetTrigger("BaseballHit");
+            isHitting = true;
+            
             if (ballSript.playerNear)
             {
                 ballSript.ChangeMaterial(this.gameObject.name);
@@ -84,6 +104,12 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 	}
+
+    public void EndAttack()
+    {
+        print("Acaba ataque");
+        isHitting = false;
+    }
 
     void OnDrawGizmos()
     {
