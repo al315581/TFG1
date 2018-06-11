@@ -13,6 +13,7 @@ public class BallScript : MonoBehaviour {
     private Transform wallHitPoint; //With raycast we will see the point where the ball will collide;
     int wallMask;
     Vector3 direction;
+    public float BallHeight = 1;
 
     Ray frontRay;
     RaycastHit hitPoint;
@@ -46,7 +47,7 @@ public class BallScript : MonoBehaviour {
     private void FixedUpdate()
     {
         #region adjusting values of position and rotation
-        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        transform.position = new Vector3(transform.position.x, BallHeight, transform.position.z);
         transform.rotation = new Quaternion(0,transform.rotation.y,transform.rotation.z,transform.rotation.w);
         #endregion
 
