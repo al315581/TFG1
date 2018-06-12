@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
     public bool isHitting = false;
+    public bool isOnGround = false;
     Animator anim;
 
     private void Awake()
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
-            if (!isHitting)
+            if (!isHitting && !isOnGround)
             {
                 anim.SetBool("Running", true);
                 Rotate(h, v);
@@ -59,7 +60,7 @@ public class PlayerMovement : MonoBehaviour {
             }
 
         }
-        if (!isHitting)
+        if (!isHitting && !isOnGround)
         {
             Move(h, v);
         }
@@ -109,6 +110,23 @@ public class PlayerMovement : MonoBehaviour {
     {
         print("Acaba ataque");
         isHitting = false;
+    }
+
+    public void HittedFront()
+    {
+        isOnGround = true;
+        anim.SetTrigger("HitFront");
+    }
+
+    public void HittedBack()
+    {
+        isOnGround = true;
+        anim.SetTrigger("HitBehind");
+    }
+
+    public void PlayerCanMoveAgain()
+    {
+        isOnGround = false;
     }
 
     void OnDrawGizmos()

@@ -82,6 +82,7 @@ public class GamMan : MonoBehaviour {
                 break;
 
             case stateOfMatch.startPoint:
+                //print("estamos aqui");
                 if (!ball.GetComponent<BallScript>().ballStopped)
                 {
                     state = stateOfMatch.running;

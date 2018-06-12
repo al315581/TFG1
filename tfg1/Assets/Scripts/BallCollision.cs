@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BallCollision : MonoBehaviour {
     public BallScript ballScript;
+    public ParticleManager PM;
+    private GameObject ball;
+    
 	// Use this for initialization
 	void Start () {
-		
+        ball = this.transform.parent.gameObject;
 	}
 	
 	// Update is called once per frame
@@ -18,6 +21,10 @@ public class BallCollision : MonoBehaviour {
     {
         if(other.tag == "Player" && !ballScript.ballStopped )
         {
+            //Fire the particles
+            PM.HitPlayerParticles(other.transform);
+            CalculateDirectionOfHit(other.transform, other.gameObject);
+
             GetComponentInParent<BallScript>().gamMan.shakeCameraPlayerDead();
             //Destroy(other.gameObject);
             GamMan.state = GamMan.stateOfMatch.endPoint;
@@ -36,5 +43,23 @@ public class BallCollision : MonoBehaviour {
             }
             
         }
+    }
+
+    private void CalculateDirectionOfHit(Transform aux, GameObject go)
+    {
+        float result;
+        result = Vector3.Angle(ball.transform.forward, aux.forward);
+        //print(result);
+        if (result < 90) {
+            print("detrás");
+            go.GetComponent<PlayerMovement>().HittedBack();
+
+        } 
+        else
+        {
+            go.GetComponent<PlayerMovement>().HittedFront();
+            print("delante");
+
+        } 
     }
 }
