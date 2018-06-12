@@ -24,6 +24,7 @@ public class GamMan : MonoBehaviour {
 
     public Transform startPointP1, startPointP2;
     public SkyboxChanger skyBoxChanger;
+    public ParticleManager PM;
 
     
 
@@ -46,6 +47,8 @@ public class GamMan : MonoBehaviour {
         switch (state){
             case stateOfMatch.notStarted:
                 ball.transform.position = startPointP1.position;
+                
+
                 if (!ball.GetComponent<BallScript>().ballStopped)
                 {
                     state = stateOfMatch.running;
@@ -65,10 +68,12 @@ public class GamMan : MonoBehaviour {
                 if (point == pointOfStart.player1)
                 {
                     ball.transform.position = startPointP1.position;
+                    PM.StartParticlesP1();
                 }
                 else
                 {
                     ball.transform.position = startPointP2.position;
+                    PM.StartParticlesP2();
                 }
                 
                 state = stateOfMatch.startPoint;
