@@ -1305,6 +1305,8 @@ MonoBehaviour:
   timerBallTime: 0
   currentSideOfBall: 0
   previousSideOfBall: 0
+  leftPlane: {fileID: 1974206942}
+  rightPlane: {fileID: 589589873}
 --- !u!4 &695917073
 Transform:
   m_ObjectHideFlags: 0

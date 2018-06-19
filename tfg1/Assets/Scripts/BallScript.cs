@@ -26,6 +26,8 @@ public class BallScript : MonoBehaviour {
 
     public GamMan gamMan;
 
+    public bool hitted = false;
+
     void Awake()
     {
         wallMask = LayerMask.GetMask("Walls");

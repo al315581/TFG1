@@ -33,6 +33,7 @@ public class GamMan : MonoBehaviour {
     public int currentSideOfBall;
     public int previousSideOfBall;
 
+    public GameObject leftPlane, rightPlane;
     
 
 	// Use this for initialization
@@ -51,6 +52,7 @@ public class GamMan : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         CheckPositionOfBall();
+        CheckWallsOpen();
         TimerScript.matchTime -= Time.deltaTime;
         switch (state){
             case stateOfMatch.notStarted:
@@ -61,6 +63,7 @@ public class GamMan : MonoBehaviour {
                 if (!ball.GetComponent<BallScript>().ballStopped)
                 {
                     state = stateOfMatch.running;
+                    ball.GetComponent<BallScript>().hitted = true;
                 }
                 print("no ha empezado");
                 break;
@@ -77,6 +80,8 @@ public class GamMan : MonoBehaviour {
             case stateOfMatch.endPoint:
 
                 ball.GetComponent<BallScript>().ballStopped = true;
+                ball.GetComponent<BallScript>().hitted = false;
+
 
                 if (point == pointOfStart.player1)
                 {
@@ -103,6 +108,8 @@ public class GamMan : MonoBehaviour {
                 if (!ball.GetComponent<BallScript>().ballStopped)
                 {
                     state = stateOfMatch.running;
+                    ball.GetComponent<BallScript>().hitted = true;
+
                 }
                 break;
         }
@@ -134,6 +141,7 @@ public class GamMan : MonoBehaviour {
             if(previousSideOfBall == 2)
             {
                 ResetTimerHotBall();
+                ResetHittedBall();
                 previousSideOfBall = 1;
             }
         }
@@ -143,11 +151,24 @@ public class GamMan : MonoBehaviour {
             if(previousSideOfBall == 1)
             {
                 ResetTimerHotBall();
+                ResetHittedBall();
                 previousSideOfBall = 2;
             }
         }
 
             
+    }
+
+    private void CheckWallsOpen()
+    {
+        if(ball.GetComponent<BallScript>().hitted == true)
+        {
+            LetTheBallCross();
+        }
+        else
+        {
+            DontLetTheBallCross();
+        }
     }
 
     private void HotBallLogic()
@@ -206,5 +227,20 @@ public class GamMan : MonoBehaviour {
     private void ResetTimerHotBall()
     {
         timerBallTime = 0;
+    }
+    private void ResetHittedBall()
+    {
+        ball.GetComponent<BallScript>().hitted = false;
+    }
+
+    private void LetTheBallCross()
+    {
+        leftPlane.SetActive(false);
+        rightPlane.SetActive(false);
+    }
+    private void DontLetTheBallCross()
+    {
+        leftPlane.SetActive(true);
+        rightPlane.SetActive(true);
     }
 }

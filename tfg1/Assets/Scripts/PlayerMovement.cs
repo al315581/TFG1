@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour {
                 //ball.transform.rotation = transform.rotation;
                 ballSript.changeDirection(transform.rotation);
                 ballSript.ballStopped = false;
+                ballSript.hitted = true;                                
 
                 if(GamMan.state == GamMan.stateOfMatch.running)
                 {
