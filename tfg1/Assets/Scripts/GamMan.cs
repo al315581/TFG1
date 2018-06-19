@@ -157,9 +157,15 @@ public class GamMan : MonoBehaviour {
         {
             PM.HitPlayerParticles(ball.transform);
             state = stateOfMatch.endPoint;
-
-
             timerBallTime = 0;
+            if(currentSideOfBall == 1)
+            {
+                point = pointOfStart.player2;
+            }
+            else
+            {
+                point = pointOfStart.player1;
+            }
         }
 
     }
