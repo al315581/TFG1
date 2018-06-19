@@ -117,7 +117,7 @@ public class BallScript : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            print("el jugador está cerca");
+            //print("el jugador está cerca");
             playerNear = true;
         }
     }
@@ -126,7 +126,7 @@ public class BallScript : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            print("el jugador sale");
+            //print("el jugador sale");
             playerNear = false;
         }
     }
