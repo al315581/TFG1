@@ -6,6 +6,7 @@ public class ParticleManager : MonoBehaviour {
 
     public ParticleSystem partP1, partP2;
     public ParticleSystem hitPlayerPart;
+    public GameObject fireTrail;
     // Use this for initialization
     void Start() {
 
@@ -32,5 +33,21 @@ public class ParticleManager : MonoBehaviour {
         hitPlayerPart.transform.position = new Vector3(t.position.x, 4, t.position.z);
         //print(t.position);
         hitPlayerPart.Play(true);
+    }
+
+    public void StartFireTrail()
+    {
+        if (!fireTrail.activeSelf)
+        {
+            fireTrail.SetActive(true);
+        }
+    }
+    public void EndFireTrail()
+    {
+        if (fireTrail.activeSelf)
+        {
+            fireTrail.SetActive(false);
+
+        }
     }
 }

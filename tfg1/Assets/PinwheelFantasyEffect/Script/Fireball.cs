@@ -10,8 +10,6 @@ public class Fireball : MonoBehaviour {
 
     public GameObject fieryEffect;
     public GameObject smokeEffect;
-    public GameObject explodeEffect;
-
     protected Rigidbody rgbd;
 
     public void Awake()
@@ -44,8 +42,6 @@ public class Fireball : MonoBehaviour {
         {
             StopParticleSystem(smokeEffect);
         }
-        if (explodeEffect != null)
-            explodeEffect.SetActive(true);
     }
 
     public void StopParticleSystem(GameObject g)
@@ -64,8 +60,7 @@ public class Fireball : MonoBehaviour {
             fieryEffect.SetActive(true);
         if (smokeEffect != null)
             smokeEffect.SetActive(true);
-        if (explodeEffect != null)
-            explodeEffect.SetActive(false);
+
     }
 }
 

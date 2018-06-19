@@ -28,6 +28,7 @@ public class GamMan : MonoBehaviour {
 
     public float ballTime = 10f;
     public float timerBallTime = 0f;
+    public float timeInFlames = 4f;
     private BoxCollider bc;
 
     public int currentSideOfBall;
@@ -229,6 +230,12 @@ public class GamMan : MonoBehaviour {
                 point = pointOfStart.player1;
             }
         }
+
+        if (timerBallTime >= ballTime - timeInFlames)
+        {
+            PM.StartFireTrail();
+        }
+        else PM.EndFireTrail();
 
     }
 
