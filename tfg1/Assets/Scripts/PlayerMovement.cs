@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool isHitting = false;
     public bool isOnGround = false;
     Animator anim;
+    public bool defeated = false;
 
     private void Awake()
     {
@@ -134,5 +135,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + direction * 2);
+    }
+    public void RestartAnimations()
+    {
+        anim.SetTrigger("RestartAnimation");
     }
 }

@@ -34,6 +34,8 @@ public class GamMan : MonoBehaviour {
     public int previousSideOfBall;
 
     public GameObject leftPlane, rightPlane;
+    public GameObject P1, P2;
+    public Transform P1initialPosition, P2initialPosition;
     
 
 	// Use this for initialization
@@ -46,7 +48,8 @@ public class GamMan : MonoBehaviour {
         velLev = velocityLevel.level1;
         bc = GetComponent<BoxCollider>();
 
-        
+        P1.transform.position = P1initialPosition.position;
+        P2.transform.position = P2initialPosition.position;
 	}
 	
 	// Update is called once per frame
@@ -97,7 +100,7 @@ public class GamMan : MonoBehaviour {
                     currentSideOfBall = 2;
                     previousSideOfBall = 2;
                 }
-                
+                StartCoroutine(WaitBetweenRounds());
                 state = stateOfMatch.startPoint;
                 ball.GetComponent<BallScript>().ResetVelocity();
                 ball.GetComponent<BallScript>().ResetMaterial();
@@ -132,6 +135,44 @@ public class GamMan : MonoBehaviour {
         }
     }
 
+    IEnumerator WaitBetweenRounds()
+    {
+        print("empieza la espera");
+        yield return new WaitForSeconds(3f);
+        RestartPlayers();
+        print("fin espera");
+    }
+    IEnumerator WaitBeforeWakingUp()
+    {
+        yield return new WaitForSeconds(1.5f);
+        RestartMovementPlayers();
+        
+    }
+
+    private void RestartPlayers()
+    {
+        if (P1.GetComponent<PlayerMovement>().defeated)
+        {
+            P1.GetComponent<PlayerMovement>().defeated = false;
+            P1.transform.position = P1initialPosition.position;
+            P1.GetComponent<PlayerMovement>().RestartAnimations();
+            //P1.GetComponent<PlayerMovement>().isOnGround = false; 
+        }
+        if (P2.GetComponent<PlayerMovement>().defeated)
+        {
+            P2.GetComponent<PlayerMovement>().defeated = false;
+            P2.transform.position = P2initialPosition.position;
+            P2.GetComponent<PlayerMovement>().RestartAnimations();
+            //P2.GetComponent<PlayerMovement>().isOnGround = false;
+
+        }
+        StartCoroutine(WaitBeforeWakingUp());
+    }
+    private void RestartMovementPlayers()
+    {
+        P1.GetComponent<PlayerMovement>().isOnGround = false;
+        P2.GetComponent<PlayerMovement>().isOnGround = false;
+    }
 
     private void CheckPositionOfBall()
     {

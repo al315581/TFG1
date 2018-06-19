@@ -21,6 +21,7 @@ public class BallCollision : MonoBehaviour {
     {
         if(other.tag == "Player" && !ballScript.ballStopped )
         {
+            other.gameObject.GetComponent<PlayerMovement>().defeated = true;
             //Fire the particles
             PM.HitPlayerParticles(other.transform);
             CalculateDirectionOfHit(other.transform, other.gameObject);
