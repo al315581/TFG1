@@ -37,7 +37,15 @@ public class GamMan : MonoBehaviour {
     public GameObject leftPlane, rightPlane;
     public GameObject P1, P2;
     public Transform P1initialPosition, P2initialPosition;
-    
+
+
+    public Material[] P1Materials, P2Materials;
+    public float fadeValue;
+    public float maxValue = 4f;
+    public float minValue = -1;
+    public float velocityDissolve = 1f;
+    public bool P1dissolving, P2dissolving;
+    public bool dissolving = false;
 
 	// Use this for initialization
 	void Start () {
@@ -51,7 +59,19 @@ public class GamMan : MonoBehaviour {
 
         P1.transform.position = P1initialPosition.position;
         P2.transform.position = P2initialPosition.position;
-	}
+
+
+        fadeValue = minValue;
+        for (int i = 0; i < P2Materials.Length; i++)
+        {
+            P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+        }
+
+        for (int i = 0; i < P1Materials.Length; i++)
+        {
+            P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -85,6 +105,9 @@ public class GamMan : MonoBehaviour {
 
                 ball.GetComponent<BallScript>().ballStopped = true;
                 ball.GetComponent<BallScript>().hitted = false;
+                RestartTimerBall();
+                PM.EndFireTrail();
+
 
 
                 if (point == pointOfStart.player1)
@@ -102,6 +125,7 @@ public class GamMan : MonoBehaviour {
                     previousSideOfBall = 2;
                 }
                 StartCoroutine(WaitBetweenRounds());
+                
                 state = stateOfMatch.startPoint;
                 ball.GetComponent<BallScript>().ResetVelocity();
                 ball.GetComponent<BallScript>().ResetMaterial();
@@ -138,17 +162,13 @@ public class GamMan : MonoBehaviour {
 
     IEnumerator WaitBetweenRounds()
     {
+        StartCoroutine(DisappearApearP1());
         print("empieza la espera");
         yield return new WaitForSeconds(3f);
         RestartPlayers();
         print("fin espera");
     }
-    IEnumerator WaitBeforeWakingUp()
-    {
-        yield return new WaitForSeconds(1.5f);
-        RestartMovementPlayers();
-        
-    }
+
 
     private void RestartPlayers()
     {
@@ -158,6 +178,7 @@ public class GamMan : MonoBehaviour {
             P1.transform.position = P1initialPosition.position;
             P1.GetComponent<PlayerMovement>().RestartAnimations();
             //P1.GetComponent<PlayerMovement>().isOnGround = false; 
+            
         }
         if (P2.GetComponent<PlayerMovement>().defeated)
         {
@@ -169,6 +190,24 @@ public class GamMan : MonoBehaviour {
         }
         StartCoroutine(WaitBeforeWakingUp());
     }
+
+    IEnumerator DisappearApearP1()
+    {
+        StartCoroutine(P1Dissappearance());
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(P1Appearance());
+
+        yield return null;
+    }
+
+    IEnumerator WaitBeforeWakingUp()
+    {
+
+        yield return new WaitForSeconds(1.5f);
+        RestartMovementPlayers();
+
+    }
+
     private void RestartMovementPlayers()
     {
         P1.GetComponent<PlayerMovement>().isOnGround = false;
@@ -218,16 +257,22 @@ public class GamMan : MonoBehaviour {
         timerBallTime += Time.deltaTime;
         if(timerBallTime >= ballTime)
         {
+            timerBallTime = 0;
+            
             PM.HitPlayerParticles(ball.transform);
             state = stateOfMatch.endPoint;
             timerBallTime = 0;
             if(currentSideOfBall == 1)
             {
                 point = pointOfStart.player2;
+                PM.StartBurningGroundP1();
+                ScoreP2Script.scoreP2++;
             }
             else
             {
                 point = pointOfStart.player1;
+                PM.StartBurningGroundP2();
+                ScoreP1Script.scoreP1++;
             }
         }
 
@@ -290,5 +335,152 @@ public class GamMan : MonoBehaviour {
     {
         leftPlane.SetActive(true);
         rightPlane.SetActive(true);
+    }
+
+    IEnumerator characterAppearance(int player)
+    {
+        while (fadeValue > minValue)
+        {
+            if (!dissolving)
+            {
+                fadeValue -= Time.deltaTime * velocityDissolve;
+
+                if (player == 1)
+                {
+                    for (int i = 0; i < P1Materials.Length; i++)
+                    {
+                        P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+                    }
+                    yield return null;
+                }
+                else
+                {
+                    for (int i = 0; i < P2Materials.Length; i++)
+                    {
+                        P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+                    }
+                    yield return null;
+                }
+                dissolving = true;
+            }
+        }
+        dissolving = false;
+        yield return null;
+    }
+
+    IEnumerator P1Dissappearance()
+    {
+        while(fadeValue <= maxValue)
+        {
+            fadeValue += Time.deltaTime * velocityDissolve;
+            //print(fadeValue);
+
+            for (int i = 0; i < P1Materials.Length; i++)
+            {
+                P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+            }
+            dissolving = true;
+            yield return null;
+            print("llega aquí");
+        }
+        dissolving = false;
+        yield return null;
+    }
+
+    IEnumerator P1Appearance()
+    {
+        while (dissolving)
+        {
+            yield return null;
+        }
+
+        while (fadeValue > minValue)
+        {
+            fadeValue -= Time.deltaTime * velocityDissolve;
+            //print(fadeValue);
+
+            for (int i = 0; i < P1Materials.Length; i++)
+            {
+                P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+            }
+
+            yield return null;
+        }
+        yield return null;
+    }
+
+
+
+    IEnumerator P2Dissappearance()
+    {
+        while (fadeValue < maxValue)
+        {
+            fadeValue += Time.deltaTime * velocityDissolve;
+            print(fadeValue);
+
+            for (int i = 0; i < P2Materials.Length; i++)
+            {
+                P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+            }
+            dissolving = true;
+            yield return null;
+        }
+        dissolving = false;
+        yield return null;
+    }
+
+    IEnumerator P2Appearance()
+    {
+        while (fadeValue > minValue)
+        {
+            fadeValue -= Time.deltaTime * velocityDissolve;
+            //print(fadeValue);
+
+            for (int i = 0; i < P2Materials.Length; i++)
+            {
+                P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+            }
+            dissolving = true;
+            yield return null;
+        }
+        dissolving = false;
+        yield return null;
+    }
+
+    IEnumerator characterDisappearance(int player)
+    {
+
+        while (fadeValue < maxValue)
+        {
+            if (!dissolving)
+            {
+                fadeValue += Time.deltaTime * velocityDissolve;
+                print(fadeValue);
+                if (player == 1)
+                {
+                    for (int i = 0; i < P1Materials.Length; i++)
+                    {
+                        P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+                    }
+                    yield return null;
+                }
+                else
+                {
+                    for (int i = 0; i < P2Materials.Length; i++)
+                    {
+                        P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+                    }
+                    yield return null;
+                }
+                dissolving = true;
+            }
+        }
+        dissolving = false;
+        yield return null;
+    }
+
+    public void RestartTimerBall()
+    {
+        timerBallTime = 0;
     }
 }

@@ -7,6 +7,8 @@ public class ParticleManager : MonoBehaviour {
     public ParticleSystem partP1, partP2;
     public ParticleSystem hitPlayerPart;
     public GameObject fireTrail;
+
+    public ParticleSystem burningFieldP1, burningFieldP2;
     // Use this for initialization
     void Start() {
 
@@ -49,5 +51,14 @@ public class ParticleManager : MonoBehaviour {
             fireTrail.SetActive(false);
 
         }
+    }
+
+    public void StartBurningGroundP1()
+    {
+        burningFieldP1.Play();
+    }
+    public void StartBurningGroundP2()
+    {
+        burningFieldP2.Play();
     }
 }
