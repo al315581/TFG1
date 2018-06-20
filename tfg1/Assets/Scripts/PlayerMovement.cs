@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour {
     Animator anim;
     public bool defeated = false;
 
+    private AudioManager AM;
+
     private void Awake()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         direction = transform.forward;
+        AM = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -91,6 +94,8 @@ public class PlayerMovement : MonoBehaviour {
         {
             anim.SetTrigger("BaseballHit");
             isHitting = true;
+            //AM.Play("PlayerHits");
+            AM.PlayRandomPitch("PlayerHits");
             
             if (ballSript.playerNear)
             {
