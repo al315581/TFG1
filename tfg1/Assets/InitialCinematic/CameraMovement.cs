@@ -8,6 +8,11 @@ public class CameraMovement : MonoBehaviour {
     public float velocityRotation = 1f;
     public float velocityUp = 1f;
     public float velocityBack = 1f;
+
+    public float TimeToChangeScene = 4f;
+    public float timer = 0f;
+
+    public LevelChanger LC;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +20,11 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timer += Time.deltaTime;
+        if(timer >= TimeToChangeScene)
+        {
+            LC.FadeToNextLevel();
+        }
         transform.LookAt(target);
         transform.Translate(Vector3.right * Time.deltaTime * velocityRotation);
         target.Translate(Vector3.up * Time.deltaTime * velocityUp);
