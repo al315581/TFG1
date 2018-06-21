@@ -9,9 +9,10 @@ public class Cinematic : MonoBehaviour {
     public float fadeValue;
     public float maxValue = 4f;
     public float velocity = 1f;
+    public float fadeInitial = -3;
 	void Start () {
         characterMaterial.SetFloat("Vector1_A235A670", -3);
-        fadeValue = -3;
+        fadeValue = fadeInitial;
         StartCoroutine(characterAppearance());
 	}
 	
