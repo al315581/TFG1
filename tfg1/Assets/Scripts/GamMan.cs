@@ -6,7 +6,7 @@ using EZCameraShake;
 public class GamMan : MonoBehaviour {
 
     public GameObject ball;
-    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch };   //we use short for optimization
+    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch, cinematic};   //we use short for optimization
     public static stateOfMatch state;
 
     public enum pointOfStart : short { player1, player2 };
@@ -54,7 +54,9 @@ public class GamMan : MonoBehaviour {
         TimerScript.matchTime = 60;
         ScoreP1Script.scoreP1 = 0;
         ScoreP2Script.scoreP2 = 0;
-        state = stateOfMatch.notStarted;
+        //state = stateOfMatch.notStarted;
+        state = stateOfMatch.cinematic;
+
         point = pointOfStart.player1;
         velLev = velocityLevel.level1;
         bc = GetComponent<BoxCollider>();
@@ -84,6 +86,7 @@ public class GamMan : MonoBehaviour {
 
         switch (state) {
             case stateOfMatch.notStarted:
+                
                 ball.transform.position = startPointP1.position;
                 currentSideOfBall = 1;
                 previousSideOfBall = 1;
@@ -523,5 +526,11 @@ public class GamMan : MonoBehaviour {
         {
             PM.StartRainParticles();
         }
+    }
+
+    public void EndCinematic()
+    {
+        state = stateOfMatch.notStarted;
+        PM.StartParticlesP1();
     }
 }

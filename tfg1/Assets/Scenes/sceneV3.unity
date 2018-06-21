@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2062802, g: 0.63515943, b: 0.83213955, a: 1}
+  m_IndirectSpecularColor: {r: 0.17386097, g: 0.5369265, b: 0.7046365, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1696,6 +1696,7 @@ GameObject:
   - component: {fileID: 712628234}
   - component: {fileID: 712628233}
   - component: {fileID: 712628232}
+  - component: {fileID: 712628235}
   m_Layer: 5
   m_Name: StartText
   m_TagString: Untagged
@@ -1771,13 +1772,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: START!
+  m_Text: START
 --- !u!222 &712628234
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 712628230}
+--- !u!114 &712628235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712628230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608e9258bc02d9746923ffc16d3b4c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &805547498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,7 +2220,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4753667424544126, guid: 0f3744e20598d9240aa89aad879b4813, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.18
+      value: -1000
       objectReference: {fileID: 0}
     - target: {fileID: 4753667424544126, guid: 0f3744e20598d9240aa89aad879b4813, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3009,15 +3021,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 19833906, guid: 1720f2c1867206149a7c64de30295781, type: 2}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19822962, guid: 1720f2c1867206149a7c64de30295781, type: 2}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800568, guid: 1720f2c1867206149a7c64de30295781, type: 2}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1720f2c1867206149a7c64de30295781, type: 2}
