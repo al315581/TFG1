@@ -6,15 +6,15 @@ using EZCameraShake;
 public class GamMan : MonoBehaviour {
 
     public GameObject ball;
-   public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch};   //we use short for optimization
+    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch };   //we use short for optimization
     public static stateOfMatch state;
 
     public enum pointOfStart : short { player1, player2 };
     public static pointOfStart point;
 
 
-   
-    public enum velocityLevel : short { level1, level2, level3, level4};
+
+    public enum velocityLevel : short { level1, level2, level3, level4 };
     public static velocityLevel velLev;
     public float velocityLevel1Limit, velocityLevel2Limit, velocityLevel3Limit, velocityLevel4Limit;
 
@@ -47,8 +47,10 @@ public class GamMan : MonoBehaviour {
     public bool P1dissolving, P2dissolving;
     public bool dissolving = false;
 
-	// Use this for initialization
-	void Start () {
+    public float timeToStartRaining = 40f;
+
+    // Use this for initialization
+    void Start() {
         TimerScript.matchTime = 60;
         ScoreP1Script.scoreP1 = 0;
         ScoreP2Script.scoreP2 = 0;
@@ -72,13 +74,15 @@ public class GamMan : MonoBehaviour {
             P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         CheckPositionOfBall();
         CheckWallsOpen();
         TimerScript.matchTime -= Time.deltaTime;
-        switch (state){
+        RainManager();
+
+        switch (state) {
             case stateOfMatch.notStarted:
                 ball.transform.position = startPointP1.position;
                 currentSideOfBall = 1;
@@ -125,7 +129,7 @@ public class GamMan : MonoBehaviour {
                     previousSideOfBall = 2;
                 }
                 StartCoroutine(WaitBetweenRounds());
-                
+
                 state = stateOfMatch.startPoint;
                 ball.GetComponent<BallScript>().ResetVelocity();
                 ball.GetComponent<BallScript>().ResetMaterial();
@@ -141,7 +145,7 @@ public class GamMan : MonoBehaviour {
                 }
                 break;
         }
-	}
+    }
 
     private void doChangesWhileRunning()
     {
@@ -162,7 +166,7 @@ public class GamMan : MonoBehaviour {
 
     IEnumerator WaitBetweenRounds()
     {
-        StartCoroutine(DisappearApearP1());
+
         print("empieza la espera");
         yield return new WaitForSeconds(3f);
         RestartPlayers();
@@ -178,7 +182,7 @@ public class GamMan : MonoBehaviour {
             P1.transform.position = P1initialPosition.position;
             P1.GetComponent<PlayerMovement>().RestartAnimations();
             //P1.GetComponent<PlayerMovement>().isOnGround = false; 
-            
+
         }
         if (P2.GetComponent<PlayerMovement>().defeated)
         {
@@ -191,11 +195,29 @@ public class GamMan : MonoBehaviour {
         StartCoroutine(WaitBeforeWakingUp());
     }
 
+    public void DissolveManagerP1()
+    {
+        StartCoroutine(DisappearApearP1());
+    }
+    public void DissolveManagerP2()
+    {
+        StartCoroutine(DisappearApearP2());
+    }
+
     IEnumerator DisappearApearP1()
     {
         StartCoroutine(P1Dissappearance());
         yield return new WaitForSeconds(3f);
         StartCoroutine(P1Appearance());
+
+        yield return null;
+    }
+
+    IEnumerator DisappearApearP2()
+    {
+        StartCoroutine(P2Dissappearance());
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(P2Appearance());
 
         yield return null;
     }
@@ -219,7 +241,7 @@ public class GamMan : MonoBehaviour {
         if (ball.transform.position.x < 0)
         {
             currentSideOfBall = 1;
-            if(previousSideOfBall == 2)
+            if (previousSideOfBall == 2)
             {
                 ResetTimerHotBall();
                 ResetHittedBall();
@@ -229,7 +251,7 @@ public class GamMan : MonoBehaviour {
         else if (ball.transform.position.x > 0)
         {
             currentSideOfBall = 2;
-            if(previousSideOfBall == 1)
+            if (previousSideOfBall == 1)
             {
                 ResetTimerHotBall();
                 ResetHittedBall();
@@ -237,12 +259,12 @@ public class GamMan : MonoBehaviour {
             }
         }
 
-            
+
     }
 
     private void CheckWallsOpen()
     {
-        if(ball.GetComponent<BallScript>().hitted == true)
+        if (ball.GetComponent<BallScript>().hitted == true)
         {
             LetTheBallCross();
         }
@@ -255,21 +277,29 @@ public class GamMan : MonoBehaviour {
     private void HotBallLogic()
     {
         timerBallTime += Time.deltaTime;
-        if(timerBallTime >= ballTime)
+        if (timerBallTime >= ballTime)
         {
             timerBallTime = 0;
-            
+
             PM.HitPlayerParticles(ball.transform);
             state = stateOfMatch.endPoint;
             timerBallTime = 0;
-            if(currentSideOfBall == 1)
+            if (currentSideOfBall == 1)
             {
+                P1.GetComponent<PlayerMovement>().defeated = true;
+
+                P1.GetComponent<PlayerMovement>().HittedFront();
+                DissolveManagerP1();
                 point = pointOfStart.player2;
                 PM.StartBurningGroundP1();
                 ScoreP2Script.scoreP2++;
             }
             else
             {
+                P2.GetComponent<PlayerMovement>().defeated = true;
+
+                P2.GetComponent<PlayerMovement>().HittedFront();
+                DissolveManagerP2();
                 point = pointOfStart.player1;
                 PM.StartBurningGroundP2();
                 ScoreP1Script.scoreP1++;
@@ -289,9 +319,9 @@ public class GamMan : MonoBehaviour {
         switch (velLev)
         {
             case velocityLevel.level1:
-                CameraShaker.Instance.ShakeOnce(cameraShakeValuesLevel1[0],cameraShakeValuesLevel1[1], cameraShakeValuesLevel1[2], cameraShakeValuesLevel1[3]);
+                CameraShaker.Instance.ShakeOnce(cameraShakeValuesLevel1[0], cameraShakeValuesLevel1[1], cameraShakeValuesLevel1[2], cameraShakeValuesLevel1[3]);
                 //CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 0.5f);
-                
+
                 break;
         }
     }
@@ -304,7 +334,7 @@ public class GamMan : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Ball")
+        if (other.gameObject.tag == "Ball")
         {
             //print("está en el campo derecho");
         }
@@ -313,7 +343,7 @@ public class GamMan : MonoBehaviour {
     {
         if (other.tag == "Ball")
         {
-           // print("está en el campo izquierdo");
+            // print("está en el campo izquierdo");
         }
     }
 
@@ -370,7 +400,7 @@ public class GamMan : MonoBehaviour {
 
     IEnumerator P1Dissappearance()
     {
-        while(fadeValue <= maxValue)
+        while (fadeValue <= maxValue)
         {
             fadeValue += Time.deltaTime * velocityDissolve;
             //print(fadeValue);
@@ -381,7 +411,6 @@ public class GamMan : MonoBehaviour {
             }
             dissolving = true;
             yield return null;
-            print("llega aquí");
         }
         dissolving = false;
         yield return null;
@@ -413,10 +442,10 @@ public class GamMan : MonoBehaviour {
 
     IEnumerator P2Dissappearance()
     {
-        while (fadeValue < maxValue)
+        while (fadeValue <= maxValue)
         {
             fadeValue += Time.deltaTime * velocityDissolve;
-            print(fadeValue);
+            //print(fadeValue);
 
             for (int i = 0; i < P2Materials.Length; i++)
             {
@@ -431,6 +460,12 @@ public class GamMan : MonoBehaviour {
 
     IEnumerator P2Appearance()
     {
+
+        while (dissolving)
+        {
+            yield return null;
+        }
+
         while (fadeValue > minValue)
         {
             fadeValue -= Time.deltaTime * velocityDissolve;
@@ -440,10 +475,8 @@ public class GamMan : MonoBehaviour {
             {
                 P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
             }
-            dissolving = true;
             yield return null;
         }
-        dissolving = false;
         yield return null;
     }
 
@@ -482,5 +515,13 @@ public class GamMan : MonoBehaviour {
     public void RestartTimerBall()
     {
         timerBallTime = 0;
+    }
+
+    private void RainManager()
+    {
+        if(TimerScript.matchTime <= timeToStartRaining)
+        {
+            PM.StartRainParticles();
+        }
     }
 }

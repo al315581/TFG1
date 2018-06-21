@@ -36,13 +36,17 @@ public class BallCollision : MonoBehaviour {
             {
                 ScoreP1Script.scoreP1 += 1;
                 GamMan.point = GamMan.pointOfStart.player2;
+                GameObject.FindObjectOfType<GamMan>().DissolveManagerP2();
+
             }
             else
             {
                 ScoreP2Script.scoreP2 += 1;
                 GamMan.point = GamMan.pointOfStart.player1;
+                GameObject.FindObjectOfType<GamMan>().DissolveManagerP1();
+
             }
-            
+
         }
     }
 

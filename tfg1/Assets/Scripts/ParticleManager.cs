@@ -7,6 +7,7 @@ public class ParticleManager : MonoBehaviour {
     public ParticleSystem partP1, partP2;
     public ParticleSystem hitPlayerPart;
     public GameObject fireTrail;
+    public ParticleSystem rain;
 
     public ParticleSystem burningFieldP1, burningFieldP2;
     // Use this for initialization
@@ -60,5 +61,11 @@ public class ParticleManager : MonoBehaviour {
     public void StartBurningGroundP2()
     {
         burningFieldP2.Play();
+    }
+
+    public void StartRainParticles()
+    {
+        rain.Play();
+        print(rain.isEmitting);
     }
 }
