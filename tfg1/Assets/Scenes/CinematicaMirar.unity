@@ -265,7 +265,7 @@ MonoBehaviour:
   endPhase1: 3.8
   endPhase2: 5
   endPhase3: 6.5
-  endPhase4: 9
+  endPhase4: 8
   P1: {fileID: 1652245978}
   P2: {fileID: 1415049967}
   steerVelocity: 2
