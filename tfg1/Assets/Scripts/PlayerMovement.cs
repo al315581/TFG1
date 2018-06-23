@@ -103,9 +103,13 @@ public class PlayerMovement : MonoBehaviour {
                 //ball.transform.rotation = transform.rotation;
                 ballSript.changeDirection(transform.rotation);
                 ballSript.ballStopped = false;
-                ballSript.hitted = true;                                
+                ballSript.hitted = true;
 
-                if(GamMan.state == GamMan.stateOfMatch.running)
+                GameObject.FindObjectOfType<GroundEffectManagerScript>().StartLeftEffect(transform);
+                GameObject.FindObjectOfType<GroundEffectManagerScript>().StartRightEffect(transform);
+
+
+                if (GamMan.state == GamMan.stateOfMatch.running)
                 {
                     ballSript.IncreaseSpeed();
                 }

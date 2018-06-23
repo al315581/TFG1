@@ -5,6 +5,11 @@ using EZCameraShake;
 
 public class GamMan : MonoBehaviour {
 
+    public float MATCH_TIME = 100f;
+    public float time_left = 100f;
+    public bool match_started = false;
+    private float timer;
+
     public GameObject ball;
     public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch, cinematic};   //we use short for optimization
     public static stateOfMatch state;
@@ -48,10 +53,14 @@ public class GamMan : MonoBehaviour {
     public bool dissolving = false;
 
     public float timeToStartRaining = 40f;
+    public float timeToEndRaining = 20f;
+    public float ppNightMax, ppNightMin;
+    public GameObject postProcessingNight;
 
     // Use this for initialization
     void Start() {
-        TimerScript.matchTime = 60;
+        TimerScript.matchTime = MATCH_TIME;
+        time_left = MATCH_TIME;
         ScoreP1Script.scoreP1 = 0;
         ScoreP2Script.scoreP2 = 0;
         //state = stateOfMatch.notStarted;
@@ -81,8 +90,16 @@ public class GamMan : MonoBehaviour {
     void Update() {
         CheckPositionOfBall();
         CheckWallsOpen();
-        TimerScript.matchTime -= Time.deltaTime;
+
         RainManager();
+        PostProcessingManager();
+        if (match_started)
+        {
+            time_left -= Time.deltaTime;
+            TimerScript.matchTime = time_left;
+            EnvironmentChanger();
+        }
+
 
         switch (state) {
             case stateOfMatch.notStarted:
@@ -524,7 +541,30 @@ public class GamMan : MonoBehaviour {
     {
         if(TimerScript.matchTime <= timeToStartRaining)
         {
-            PM.StartRainParticles();
+            if(TimerScript.matchTime <= timeToEndRaining)
+            {
+                PM.EndRainParticles();
+            }
+            else
+            {
+                PM.StartRainParticles();
+
+            }
+        }
+    }
+    private void PostProcessingManager()
+    {
+        if (TimerScript.matchTime <= ppNightMax)
+        {
+            if (TimerScript.matchTime <= ppNightMin)
+            {
+                postProcessingNight.SetActive(false);
+            }
+            else
+            {
+                postProcessingNight.SetActive(true);
+
+            }
         }
     }
 
@@ -532,5 +572,16 @@ public class GamMan : MonoBehaviour {
     {
         state = stateOfMatch.notStarted;
         PM.StartParticlesP1();
+        match_started = true;
+    }
+
+    private void EnvironmentChanger()
+    {
+        timer += Time.deltaTime;
+        if(timer >= 10f)
+        {
+            skyBoxChanger.ChangeSkybox();
+            timer = 0;
+        }
     }
 }

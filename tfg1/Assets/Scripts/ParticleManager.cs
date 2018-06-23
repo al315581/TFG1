@@ -65,7 +65,15 @@ public class ParticleManager : MonoBehaviour {
 
     public void StartRainParticles()
     {
+        if(!rain.isEmitting)
         rain.Play();
-        print(rain.isEmitting);
+        //print(rain.isEmitting);
+    }
+
+    public void EndRainParticles()
+    {
+        if(rain.isEmitting)
+        rain.Stop();
+        //print(rain.isEmitting);
     }
 }
