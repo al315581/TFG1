@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private AudioManager AM;
     public ParticleManager PM;
+    public GamMan GM;
 
     private void Awake()
     {
@@ -144,8 +145,21 @@ public class PlayerMovement : MonoBehaviour {
                 ballSript.ballStopped = false;
                 ballSript.hitted = true;
 
-                GameObject.FindObjectOfType<GroundEffectManagerScript>().StartLeftEffect(transform);
-                GameObject.FindObjectOfType<GroundEffectManagerScript>().StartRightEffect(transform);
+                if (PLAYER_NUMBER == 1)
+                {
+                    if(ballSript.CheckIfCrossField())
+                    GameObject.FindObjectOfType<GroundEffectManagerScript>().StartLeftEffect(transform);
+                    
+                    
+
+                }
+                else
+                {
+                    if (ballSript.CheckIfCrossField()) ;
+                    GameObject.FindObjectOfType<GroundEffectManagerScript>().StartRightEffect(transform);
+
+                }
+
 
 
                 if (GamMan.state == GamMan.stateOfMatch.running)

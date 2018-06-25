@@ -376,12 +376,12 @@ public class GamMan : MonoBehaviour {
         ball.GetComponent<BallScript>().hitted = false;
     }
 
-    private void LetTheBallCross()
+    public void LetTheBallCross()
     {
         leftPlane.SetActive(false);
         rightPlane.SetActive(false);
     }
-    private void DontLetTheBallCross()
+    public void DontLetTheBallCross()
     {
         leftPlane.SetActive(true);
         rightPlane.SetActive(true);

@@ -93,7 +93,7 @@ public class BallScript : MonoBehaviour {
                     direction = Vector3.Normalize(transform.forward);
 
                     FindObjectOfType<AudioManager>().Play("BallHitsWall");
-                    print("Se sale fuera");
+                    //print("Se sale fuera");
                 }
                 else
                 {
@@ -115,6 +115,40 @@ public class BallScript : MonoBehaviour {
     }
 
 
+    public bool CheckIfCrossField()
+    {
+        gamMan.LetTheBallCross();
+        Vector3 aux = Vector3.Normalize(transform.forward);
+        Ray auxRay = new Ray();
+        RaycastHit auxHit;
+        auxRay.origin = transform.position;
+        auxRay.direction = aux;
+        if (Physics.Raycast(auxRay, out auxHit, range, wallMask))
+        {
+            print(auxHit.transform.position);
+            if(auxHit.transform.position.x <= 0) //Ray hits in the left.
+            {
+                if(gamMan.currentSideOfBall == 2)
+                {
+                    print("DIBUJAMOS");
+                    gamMan.DontLetTheBallCross();
+                    return true;
+                }
+            } else if (auxHit.transform.position.x > 0) //Ray on the right
+            {
+                if (gamMan.currentSideOfBall == 1)
+                {
+                    print("DIBUJAMOS");
+                    gamMan.DontLetTheBallCross();
+
+                    return true;
+                }
+            }
+        }
+        print("NO DIBUJAMOS");
+        gamMan.DontLetTheBallCross();
+        return false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
