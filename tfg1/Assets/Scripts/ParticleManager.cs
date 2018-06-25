@@ -10,6 +10,10 @@ public class ParticleManager : MonoBehaviour {
     public ParticleSystem rain;
 
     public ParticleSystem burningFieldP1, burningFieldP2;
+
+    public ParticleSystem runParticlesp1, runParticlesp2;
+    private bool runPartEmit = false;
+    public GameObject runParticlesObject;
     // Use this for initialization
     void Start() {
 
@@ -76,4 +80,64 @@ public class ParticleManager : MonoBehaviour {
         rain.Stop();
         //print(rain.isEmitting);
     }
+
+    public void StartRunParticlesP1()
+    {
+        print(runParticlesp1.isPlaying);
+        print(runParticlesp1.isEmitting);
+        //StartRunParticles2();
+         if (!runParticlesp1.isPlaying)
+         {
+             runParticlesp1.Play();
+             print("damos play");
+         }
+       /*  
+        if (!runPartEmit)
+        {
+            runParticles.Play();
+            runPartEmit = true;
+        }*/
+    }
+    public void EndRunParticlesP1()
+    {
+        //EndRunParticles2();
+        if (runParticlesp1.isPlaying)
+        {
+            runParticlesp1.Stop();
+            print("las paramos");
+        }
+        /*
+        if (runPartEmit)
+        {
+            runParticles.Stop();
+            runPartEmit = false;
+        }*/
+    }
+    public void StartRunParticlesP2()
+    {
+
+        if (!runParticlesp2.isPlaying)
+        {
+            runParticlesp2.Play();
+            print("damos play");
+        }
+    }
+    public void EndRunParticlesP2()
+    {
+        if (runParticlesp2.isPlaying)
+        {
+            runParticlesp2.Stop();
+            print("las paramos");
+        }
+
+    }
+    /*
+    public void StartRunParticles2()
+    {
+        runParticlesObject.SetActive(true);
+    }
+    public void EndRunParticles2()
+    {
+        runParticlesObject.SetActive(false);
+    }*/
 }

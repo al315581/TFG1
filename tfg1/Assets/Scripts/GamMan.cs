@@ -113,7 +113,7 @@ public class GamMan : MonoBehaviour {
                     state = stateOfMatch.running;
                     ball.GetComponent<BallScript>().hitted = true;
                 }
-                print("no ha empezado");
+                //print("no ha empezado");
                 break;
 
             case stateOfMatch.running:

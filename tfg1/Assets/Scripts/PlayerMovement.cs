@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
     public int speed;
     private float lastV, lastH;
     public float slerpSpeed;
+    public int PLAYER_NUMBER;
 
     public BallScript ballSript;
     public GameObject ball;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour {
     public bool defeated = false;
 
     private AudioManager AM;
+    public ParticleManager PM;
 
     private void Awake()
     {
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
         AM = FindObjectOfType<AudioManager>();
     }
 
+
+    
     private void FixedUpdate()
     {
         float h = Input.GetAxisRaw(HorizontalCtrl);
@@ -90,6 +94,41 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
+        print(anim.GetBool("Running"));
+        if (anim.GetBool("Running"))
+        {
+            if (PLAYER_NUMBER == 1)
+            {
+                PM.StartRunParticlesP1();
+
+            }
+            else PM.StartRunParticlesP2();
+
+        }
+        else
+        {
+            PM.EndRunParticlesP1();
+
+        }
+        */
+        if(PLAYER_NUMBER == 1)
+        {
+            if (anim.GetBool("Running"))
+            {
+                PM.StartRunParticlesP1();
+            }
+            else PM.EndRunParticlesP1();
+        }
+        else
+        {
+            if (anim.GetBool("Running"))
+            {
+                PM.StartRunParticlesP2();
+            }
+            else PM.EndRunParticlesP2();
+        }
+
         if (Input.GetButtonDown(FireCtrl))
         {
             anim.SetTrigger("BaseballHit");
