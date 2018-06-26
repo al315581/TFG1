@@ -92,7 +92,9 @@ public class BallScript : MonoBehaviour {
                     auxiliar.position = transform.position;
                     direction = Vector3.Normalize(transform.forward);
 
-                    FindObjectOfType<AudioManager>().Play("BallHitsWall");
+                    //FindObjectOfType<AudioManager>().Play("BallHitsWall");
+                    FindObjectOfType<AudioManager>().PlayRandomPitch("BallHitsWall");
+
                     //print("Se sale fuera");
                 }
                 else

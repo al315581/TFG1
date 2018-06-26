@@ -21,6 +21,8 @@ public class BallCollision : MonoBehaviour {
     {
         if(other.tag == "Player" && !ballScript.ballStopped )
         {
+            FindObjectOfType<AudioManager>().PlayRandomPitch("ExplosionSound");
+
             other.gameObject.GetComponent<PlayerMovement>().defeated = true;
             //Fire the particles
             PM.HitPlayerParticles(other.transform);

@@ -151,6 +151,8 @@ public class GamMan : MonoBehaviour {
                 StartCoroutine(WaitBetweenRounds());
 
                 state = stateOfMatch.startPoint;
+                GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("EnergyConcentration");
+
                 ball.GetComponent<BallScript>().ResetVelocity();
                 ball.GetComponent<BallScript>().ResetMaterial();
                 break;
@@ -312,6 +314,8 @@ public class GamMan : MonoBehaviour {
                 DissolveManagerP1();
                 point = pointOfStart.player2;
                 PM.StartBurningGroundP1();
+                FindObjectOfType<AudioManager>().PlayRandomPitch("ExplosionSound");
+
                 ScoreP2Script.scoreP2++;
             }
             else
@@ -322,6 +326,8 @@ public class GamMan : MonoBehaviour {
                 DissolveManagerP2();
                 point = pointOfStart.player1;
                 PM.StartBurningGroundP2();
+                FindObjectOfType<AudioManager>().PlayRandomPitch("ExplosionSound");
+
                 ScoreP1Script.scoreP1++;
             }
         }
@@ -572,6 +578,7 @@ public class GamMan : MonoBehaviour {
     {
         state = stateOfMatch.notStarted;
         PM.StartParticlesP1();
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("EnergyConcentration");
         match_started = true;
     }
 
