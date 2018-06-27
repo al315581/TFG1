@@ -14,6 +14,11 @@ public class ParticleManager : MonoBehaviour {
     public ParticleSystem runParticlesp1, runParticlesp2;
     private bool runPartEmit = false;
     public GameObject runParticlesObject;
+
+    public ParticleSystem redFireworks1, redFireworks2, redFireworks3, redFireworks4;
+    public ParticleSystem bluefw1, bluefw2, bluefw3, bluefw4;
+    public float fireworkTime1, fireworkTime2, fireworkTime3, fireworkTime4;
+    public float randomFireworksMin, randomFireworksMax;
     // Use this for initialization
     void Start() {
 
@@ -140,4 +145,123 @@ public class ParticleManager : MonoBehaviour {
     {
         runParticlesObject.SetActive(false);
     }*/
+
+    public void StartFireworksBlue()
+    {
+        StartCoroutine(fwb1());
+        StartCoroutine(fwb2());
+
+        StartCoroutine(fwb3());
+
+        StartCoroutine(fwb4());
+
+    }
+
+    public void StartFireworksRed()
+    {
+        //redFireworks1.Play();
+        //redFireworks2.Play();
+        //redFireworks3.Play();
+        StartCoroutine(fwr1());
+        StartCoroutine(fwr2());
+
+        StartCoroutine(fwr3());
+
+        StartCoroutine(fwr4());
+
+    }
+
+    IEnumerator fwr1()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+            yield return new WaitForSeconds(r);
+            redFireworks1.Play();
+
+        }
+        yield return null;
+    }
+
+    IEnumerator fwr2()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+
+            yield return new WaitForSeconds(r);
+            redFireworks2.Play();
+
+        }
+        yield return null;
+    }
+    IEnumerator fwr3()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+
+            yield return new WaitForSeconds(r);
+            redFireworks3.Play();
+
+        }
+        yield return null;
+    }
+    IEnumerator fwr4()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+
+            yield return new WaitForSeconds(r);
+            redFireworks4.Play();
+
+        }
+        yield return null;
+    }
+
+    IEnumerator fwb1()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+            yield return new WaitForSeconds(r);
+            bluefw1.Play();
+
+        }
+        yield return null;
+    }
+    IEnumerator fwb2()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+            yield return new WaitForSeconds(r);
+            bluefw2.Play();
+
+        }
+        yield return null;
+    }
+    IEnumerator fwb3()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+            yield return new WaitForSeconds(r);
+            bluefw3.Play();
+
+        }
+        yield return null;
+    }
+    IEnumerator fwb4()
+    {
+        while (true)
+        {
+            float r = Random.Range(randomFireworksMin, randomFireworksMax);
+            yield return new WaitForSeconds(r);
+            bluefw4.Play();
+
+        }
+        yield return null;
+    }
 }

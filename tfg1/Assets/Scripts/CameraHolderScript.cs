@@ -24,4 +24,13 @@ public class CameraHolderScript : MonoBehaviour {
     {
         anim.SetTrigger("WinP2");
     }
+
+    public void startFireWorksP2()
+    {
+        GameObject.FindObjectOfType<ParticleManager>().StartFireworksRed();
+    }
+    public void startFireWorksP1()
+    {
+        GameObject.FindObjectOfType<ParticleManager>().StartFireworksBlue();
+    }
 }

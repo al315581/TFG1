@@ -11,7 +11,7 @@ public class GamMan : MonoBehaviour {
     private float timer;
 
     public GameObject ball;
-    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch, cinematic};   //we use short for optimization
+    public enum stateOfMatch : short { notStarted, running, endPoint, startPoint, endMatch, cinematic, endGame};   //we use short for optimization
     public static stateOfMatch state;
 
     public enum pointOfStart : short { player1, player2 };
@@ -172,6 +172,9 @@ public class GamMan : MonoBehaviour {
 
                 }
                 break;
+
+            case stateOfMatch.endGame:
+                break;
         }
     }
 
@@ -194,6 +197,7 @@ public class GamMan : MonoBehaviour {
                 else  //win P2
                 {
                     GameObject.FindObjectOfType<CameraHolderScript>().MoveToP2();
+                    //PM.StartFireworksRed();
                 }
             }
         }
