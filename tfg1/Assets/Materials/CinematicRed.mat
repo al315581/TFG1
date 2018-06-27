@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: LeftWave
-  m_Shader: {fileID: 4800000, guid: 221bf47898810a94ab4e06db018758e1, type: 3}
+  m_Name: CinematicRed
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -59,7 +59,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_6E442B6E: 0.4
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -81,11 +80,6 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_168E890A: {r: 0.2821066, g: 0.902741, b: 1.608007, a: 0}
-    - Color_5BFA3CD2: {r: 0.023584902, g: 0.20290029, b: 1, a: 0}
-    - Color_DBE6CB24: {r: 0, g: 0.59077644, b: 1, a: 0}
-    - Vector3_7D528C8C: {r: -21.417038, g: 0, b: 2.216348, a: 0}
-    - Vector3_864377FA: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color: {r: 0.8207547, g: 0.56136525, b: 0.56136525, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

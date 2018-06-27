@@ -91,7 +91,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000002, guid: 1c3cc13ba558dcf4aadf333fd9d050cc,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -161,7 +161,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b0642815b24f033469b43bd8fde8c725, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -487,6 +487,7 @@ MonoBehaviour:
   fadeValue: 0
   maxValue: 4
   velocity: 1
+  fadeInitial: -3
 --- !u!1 &912693001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1070,7 @@ MonoBehaviour:
   fadeValue: 0
   maxValue: 4
   velocity: 1
+  fadeInitial: -3
 --- !u!1 &1860213588
 GameObject:
   m_ObjectHideFlags: 0

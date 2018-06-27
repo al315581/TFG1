@@ -133,49 +133,53 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown(FireCtrl) && !defeated)
         {
             anim.SetTrigger("BaseballHit");
-            isHitting = true;
+            //isHitting = true;
             //AM.Play("PlayerHits");
             AM.PlayRandomPitch("PlayerHits");
-            
-            if (ballSript.playerNear)
+        }
+
+        if (ballSript.playerNear && isHitting)
+        {
+            GM.ShakeCameraPlayerHits();
+
+            ballSript.ChangeMaterial(this.gameObject.name);
+            //ball.transform.rotation = transform.rotation;
+            ballSript.changeDirection(transform.rotation);
+            ballSript.ballStopped = false;
+            ballSript.hitted = true;
+
+            if (PLAYER_NUMBER == 1)
             {
-                GM.ShakeCameraPlayerHits();
-
-                ballSript.ChangeMaterial(this.gameObject.name);
-                //ball.transform.rotation = transform.rotation;
-                ballSript.changeDirection(transform.rotation);
-                ballSript.ballStopped = false;
-                ballSript.hitted = true;
-
-                if (PLAYER_NUMBER == 1)
-                {
-                    if(ballSript.CheckIfCrossField())
+                if (ballSript.CheckIfCrossField())
                     GameObject.FindObjectOfType<GroundEffectManagerScript>().StartLeftEffect(transform);
-                    
-                    
 
-                }
-                else
-                {
-                    if (ballSript.CheckIfCrossField())
+
+
+            }
+            else
+            {
+                if (ballSript.CheckIfCrossField())
                     GameObject.FindObjectOfType<GroundEffectManagerScript>().StartRightEffect(transform);
 
-                }
-
-
-
-                if (GamMan.state == GamMan.stateOfMatch.running)
-                {
-                    ballSript.IncreaseSpeed();
-                }
             }
+
+            if (GamMan.state == GamMan.stateOfMatch.running)
+            {
+                ballSript.IncreaseSpeed();
+            }
+            isHitting = false;
         }
-	}
+    }
 
     public void EndAttack()
     {
         print("Acaba ataque");
         isHitting = false;
+    }
+    public void StartAttack()
+    {
+        print("Empieza ataque");
+        isHitting = true;
     }
 
     public void HittedFront()
@@ -202,6 +206,8 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void RestartAnimations()
     {
+        isHitting = false;
+
         anim.SetTrigger("RestartAnimation");
     }
 }

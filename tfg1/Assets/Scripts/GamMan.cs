@@ -58,6 +58,8 @@ public class GamMan : MonoBehaviour {
     public float ppNightMax, ppNightMin;
     public GameObject postProcessingNight;
 
+    public Transform WinPointP1, WinPointP2;
+
     // Use this for initialization
     void Start() {
         TimerScript.matchTime = MATCH_TIME;
@@ -89,6 +91,9 @@ public class GamMan : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        GameOverManager();
+        
+
         CheckPositionOfBall();
         CheckWallsOpen();
 
@@ -167,6 +172,30 @@ public class GamMan : MonoBehaviour {
 
                 }
                 break;
+        }
+    }
+
+    private void GameOverManager()
+    {
+        if (time_left <= 0)
+        {
+            time_left = 0;
+            ball.GetComponent<BallScript>().velocity = 0;
+            if (ScoreP1Script.scoreP1 == ScoreP2Script.scoreP2) //Draw
+            {
+
+            }
+            else
+            {
+                if(ScoreP1Script.scoreP1 > ScoreP2Script.scoreP2)   //win P1
+                {
+                    GameObject.FindObjectOfType<CameraHolderScript>().MoveToP1();
+                }
+                else  //win P2
+                {
+                    GameObject.FindObjectOfType<CameraHolderScript>().MoveToP2();
+                }
+            }
         }
     }
 

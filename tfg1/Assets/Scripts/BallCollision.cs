@@ -24,6 +24,8 @@ public class BallCollision : MonoBehaviour {
             FindObjectOfType<AudioManager>().PlayRandomPitch("ExplosionSound");
 
             other.gameObject.GetComponent<PlayerMovement>().defeated = true;
+            other.gameObject.GetComponent<PlayerMovement>().isHitting = false;
+
             //Fire the particles
             PM.HitPlayerParticles(other.transform);
             CalculateDirectionOfHit(other.transform, other.gameObject);
