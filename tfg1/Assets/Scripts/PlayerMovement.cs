@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour {
             else PM.EndRunParticlesP2();
         }
 
-        if (Input.GetButtonDown(FireCtrl))
+        if (Input.GetButtonDown(FireCtrl) && !defeated)
         {
             anim.SetTrigger("BaseballHit");
             isHitting = true;
