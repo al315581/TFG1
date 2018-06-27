@@ -132,6 +132,8 @@ public class BallScript : MonoBehaviour {
             {
                 if(gamMan.currentSideOfBall == 2)
                 {
+                    //print("Current side: "+ gamMan);
+                    print(auxHit.transform.position.x);
                     print("DIBUJAMOS");
                     gamMan.DontLetTheBallCross();
                     return true;
@@ -140,14 +142,14 @@ public class BallScript : MonoBehaviour {
             {
                 if (gamMan.currentSideOfBall == 1)
                 {
-                    print("DIBUJAMOS");
+                    //print("DIBUJAMOS");
                     gamMan.DontLetTheBallCross();
 
                     return true;
                 }
             }
         }
-        print("NO DIBUJAMOS");
+        //print("NO DIBUJAMOS");
         gamMan.DontLetTheBallCross();
         return false;
     }

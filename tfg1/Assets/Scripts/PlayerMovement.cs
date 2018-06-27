@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
                 else
                 {
-                    if (ballSript.CheckIfCrossField()) ;
+                    if (ballSript.CheckIfCrossField())
                     GameObject.FindObjectOfType<GroundEffectManagerScript>().StartRightEffect(transform);
 
                 }
