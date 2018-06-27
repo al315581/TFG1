@@ -60,6 +60,8 @@ public class GamMan : MonoBehaviour {
 
     public Transform WinPointP1, WinPointP2;
 
+    public int WINNER = 0;
+
     // Use this for initialization
     void Start() {
         TimerScript.matchTime = MATCH_TIME;
@@ -91,6 +93,7 @@ public class GamMan : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if(match_started)
         GameOverManager();
         
 
@@ -174,6 +177,19 @@ public class GamMan : MonoBehaviour {
                 break;
 
             case stateOfMatch.endGame:
+
+                if(WINNER == 1)
+                {
+                    P1.GetComponent<Animator>().SetTrigger("Winner");
+                }
+                else
+                {
+                    if(WINNER == 2)
+                    {
+                        P2.GetComponent<Animator>().SetTrigger("Winner");
+                    }
+                }
+
                 break;
         }
     }
@@ -182,8 +198,11 @@ public class GamMan : MonoBehaviour {
     {
         if (time_left <= 0)
         {
-            time_left = 0;
-            ball.GetComponent<BallScript>().velocity = 0;
+            ball.GetComponent<BallScript>().ballStopped = true;
+            ball.GetComponent<BallScript>().hitted = false;
+            RestartTimerBall();
+            PM.EndFireTrail();
+            match_started = false;      //para que no corra el tiempo
             ball.transform.position = new Vector3(-10000, ball.transform.position.y, ball.transform.position.z);
             if (ScoreP1Script.scoreP1 == ScoreP2Script.scoreP2) //Draw
             {
@@ -191,16 +210,30 @@ public class GamMan : MonoBehaviour {
             }
             else
             {
+                RestartDissolve();
                 if(ScoreP1Script.scoreP1 > ScoreP2Script.scoreP2)   //win P1
                 {
+                    WINNER = 1;
                     GameObject.FindObjectOfType<CameraHolderScript>().MoveToP1();
+                    P1initialPosition = WinPointP1;
+                    P1.GetComponent<PlayerMovement>().defeated = true;
+                    //P1.GetComponent<PlayerMovement>().isOnGround = true;
+
+                    DissolveManagerP1();
                 }
                 else  //win P2
                 {
+                    WINNER = 2;
                     GameObject.FindObjectOfType<CameraHolderScript>().MoveToP2();
-                    //PM.StartFireworksRed();
+                    P2initialPosition = WinPointP2;
+                    P2.GetComponent<PlayerMovement>().defeated = true;
+                    DissolveManagerP2();
+
                 }
+                StartCoroutine(WaitBetweenRounds());
+
             }
+            state = stateOfMatch.endGame;
         }
     }
 
@@ -226,7 +259,15 @@ public class GamMan : MonoBehaviour {
 
         print("empieza la espera");
         yield return new WaitForSeconds(3f);
-        RestartPlayers();
+        if (match_started)
+        {
+            RestartPlayers();
+
+        }
+        else
+        {
+            RestartPlayersEndGame();
+        }
         print("fin espera");
     }
 
@@ -250,6 +291,33 @@ public class GamMan : MonoBehaviour {
 
         }
         StartCoroutine(WaitBeforeWakingUp());
+    }
+
+    private void RestartPlayersEndGame()
+    {
+        if (P1.GetComponent<PlayerMovement>().defeated)
+        {
+            //P1.GetComponent<PlayerMovement>().defeated = false;
+            P1.transform.position = P1initialPosition.position;
+            P1.transform.rotation = P1initialPosition.rotation;
+            print("BREACKPOINT1");
+            P1.GetComponent<PlayerMovement>().isOnGround = true;
+
+            //P1.GetComponent<PlayerMovement>().RestartAnimations();
+            //P1.GetComponent<PlayerMovement>().isOnGround = false; 
+
+        }
+        if (P2.GetComponent<PlayerMovement>().defeated)
+        {
+            //P2.GetComponent<PlayerMovement>().defeated = false;
+            P2.transform.position = P2initialPosition.position;
+            P2.transform.rotation = P2initialPosition.rotation;
+            P2.GetComponent<PlayerMovement>().isOnGround = true;
+
+            //P2.GetComponent<PlayerMovement>().RestartAnimations();
+            //P2.GetComponent<PlayerMovement>().isOnGround = false;
+
+        }
     }
 
 
@@ -632,6 +700,20 @@ public class GamMan : MonoBehaviour {
         {
             skyBoxChanger.ChangeSkybox();
             timer = 0;
+        }
+    }
+
+    private void RestartDissolve()
+    {
+        fadeValue = minValue;
+        for (int i = 0; i < P2Materials.Length; i++)
+        {
+            P1Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
+        }
+
+        for (int i = 0; i < P1Materials.Length; i++)
+        {
+            P2Materials[i].SetFloat("Vector1_68C5C62B", fadeValue);
         }
     }
 }
