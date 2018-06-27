@@ -25,6 +25,7 @@ public class GamMan : MonoBehaviour {
 
     public List<float> cameraShakeValuesPlayerDead = new List<float>();
     public List<float> cameraShakeValuesLevel1 = new List<float>();
+    public float hitShake1, hitShake2, hitShake3, hitShake4;
 
 
     public Transform startPointP1, startPointP2;
@@ -352,6 +353,11 @@ public class GamMan : MonoBehaviour {
         }
     }
 
+    public void ShakeCameraPlayerHits()
+    {
+        CameraShaker.Instance.ShakeOnce(hitShake1,hitShake2,hitShake3,hitShake4);
+        
+    }
 
     public void shakeCameraPlayerDead()
     {

@@ -27,6 +27,9 @@ public class ManagerSceneLook : MonoBehaviour {
 	void Update () {
         timer += Time.deltaTime;
         ball.gameObject.transform.position += ball.transform.forward * Time.deltaTime * speedBall;
+        P1.transform.position = new Vector3(P1.transform.position.x, 0 ,P1.transform.position.z);
+        P2.transform.position = new Vector3(P2.transform.position.x, 0, P2.transform.position.z);
+
         switch (state)
         {
             case 1:

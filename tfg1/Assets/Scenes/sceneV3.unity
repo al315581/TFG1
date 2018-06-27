@@ -2273,6 +2273,10 @@ MonoBehaviour:
   - 4
   - 0.1
   - 1
+  hitShake1: 7
+  hitShake2: 6
+  hitShake3: 0
+  hitShake4: 0.15
   startPointP1: {fileID: 1444517966}
   startPointP2: {fileID: 1693773216}
   skyBoxChanger: {fileID: 638586130}

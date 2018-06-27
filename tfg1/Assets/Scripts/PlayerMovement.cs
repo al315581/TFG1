@@ -139,6 +139,8 @@ public class PlayerMovement : MonoBehaviour {
             
             if (ballSript.playerNear)
             {
+                GM.ShakeCameraPlayerHits();
+
                 ballSript.ChangeMaterial(this.gameObject.name);
                 //ball.transform.rotation = transform.rotation;
                 ballSript.changeDirection(transform.rotation);
