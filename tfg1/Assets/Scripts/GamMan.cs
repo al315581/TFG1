@@ -184,9 +184,10 @@ public class GamMan : MonoBehaviour {
         {
             time_left = 0;
             ball.GetComponent<BallScript>().velocity = 0;
+            ball.transform.position = new Vector3(-10000, ball.transform.position.y, ball.transform.position.z);
             if (ScoreP1Script.scoreP1 == ScoreP2Script.scoreP2) //Draw
             {
-
+                //completar empate
             }
             else
             {
@@ -250,6 +251,9 @@ public class GamMan : MonoBehaviour {
         }
         StartCoroutine(WaitBeforeWakingUp());
     }
+
+
+
 
     public void DissolveManagerP1()
     {

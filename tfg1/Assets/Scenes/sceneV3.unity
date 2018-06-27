@@ -2425,7 +2425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127793a448a5164486989c6508baa1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MATCH_TIME: 15
+  MATCH_TIME: 11
   time_left: 100
   match_started: 0
   ball: {fileID: 1819269158}
@@ -2495,8 +2495,8 @@ MonoBehaviour:
   dissolving: 0
   timeToStartRaining: 50
   timeToEndRaining: 30
-  ppNightMax: 0
-  ppNightMin: 0
+  ppNightMax: 40
+  ppNightMin: 30
   postProcessingNight: {fileID: 525622845}
   WinPointP1: {fileID: 1362599362}
   WinPointP2: {fileID: 1302878337}
