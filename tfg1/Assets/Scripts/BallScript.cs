@@ -27,6 +27,7 @@ public class BallScript : MonoBehaviour {
     public GamMan gamMan;
 
     public bool hitted = false;
+    public ParticleManager PM;
 
     void Awake()
     {
@@ -96,6 +97,9 @@ public class BallScript : MonoBehaviour {
                     FindObjectOfType<AudioManager>().PlayRandomPitch("BallHitsWall");
 
                     //print("Se sale fuera");
+                    Quaternion aux = Quaternion.LookRotation(hitPoint.normal);
+                    PM.PlayWallSparks(this.transform, aux);
+
                 }
                 else
                 {

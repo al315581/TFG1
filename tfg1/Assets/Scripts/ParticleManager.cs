@@ -19,6 +19,9 @@ public class ParticleManager : MonoBehaviour {
     public ParticleSystem bluefw1, bluefw2, bluefw3, bluefw4;
     public float fireworkTime1, fireworkTime2, fireworkTime3, fireworkTime4;
     public float randomFireworksMin, randomFireworksMax;
+
+
+    public ParticleSystem wallSparks;
     // Use this for initialization
     void Start() {
 
@@ -263,5 +266,12 @@ public class ParticleManager : MonoBehaviour {
 
         }
         yield return null;
+    }
+
+    public void PlayWallSparks(Transform pos, Quaternion rot)
+    {
+        wallSparks.transform.position = pos.position;
+        wallSparks.transform.rotation = rot;
+        wallSparks.Play();
     }
 }
