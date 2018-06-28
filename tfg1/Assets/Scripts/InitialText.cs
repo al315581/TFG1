@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InitialText : MonoBehaviour {
-
 	// Use this for initialization
 	void Start () {
 		
@@ -18,4 +17,6 @@ public class InitialText : MonoBehaviour {
     {
         GameObject.FindObjectOfType<GamMan>().EndCinematic();
     }
+
+
 }

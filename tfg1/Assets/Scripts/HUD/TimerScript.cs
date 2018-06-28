@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour {
-
+    Animator anim;
     public static float matchTime;
     Text text;
 
@@ -14,7 +14,7 @@ public class TimerScript : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-		
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -23,4 +23,8 @@ public class TimerScript : MonoBehaviour {
         text.text = Mathf.RoundToInt(matchTime).ToString();
 		
 	}
+    public void HideTimer()
+    {
+        anim.SetTrigger("HideTime");
+    }
 }

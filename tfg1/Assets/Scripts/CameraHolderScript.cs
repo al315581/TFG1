@@ -28,9 +28,12 @@ public class CameraHolderScript : MonoBehaviour {
     public void startFireWorksP2()
     {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksRed();
+        GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
     }
     public void startFireWorksP1()
     {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksBlue();
+        GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
+
     }
 }

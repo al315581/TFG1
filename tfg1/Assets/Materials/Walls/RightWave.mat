@@ -84,7 +84,7 @@ Material:
     - Color_168E890A: {r: 0.2821066, g: 0.902741, b: 1.608007, a: 0}
     - Color_5BFA3CD2: {r: 2, g: 0, b: 0, a: 0}
     - Color_DBE6CB24: {r: 0.5, g: 0, b: 0, a: 0}
-    - Vector3_7D528C8C: {r: 11.270265, g: 0, b: 16.51787, a: 0}
+    - Vector3_7D528C8C: {r: 22.046978, g: 0, b: -6.8446293, a: 0}
     - Vector3_864377FA: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
