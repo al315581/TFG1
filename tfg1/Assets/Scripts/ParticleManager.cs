@@ -20,6 +20,8 @@ public class ParticleManager : MonoBehaviour {
     public float fireworkTime1, fireworkTime2, fireworkTime3, fireworkTime4;
     public float randomFireworksMin, randomFireworksMax;
 
+    public GameObject confettiP1, confettiP2;
+
 
     public ParticleSystem wallSparks;
     // Use this for initialization
@@ -273,5 +275,15 @@ public class ParticleManager : MonoBehaviour {
         wallSparks.transform.position = pos.position;
         wallSparks.transform.rotation = rot;
         wallSparks.Play();
+    }
+
+    public void PlayConfettiP1()
+    {
+        confettiP1.SetActive(true);
+    }
+
+    public void PlayConfettiP2()
+    {
+        confettiP2.SetActive(true);
     }
 }

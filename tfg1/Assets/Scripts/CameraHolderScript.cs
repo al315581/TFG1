@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraHolderScript : MonoBehaviour {
 
-    public Transform winP1, winP2;
+    //public Transform winP1, winP2;
     Animator anim;
     // Use this for initialization
     void Start () {
@@ -29,11 +29,23 @@ public class CameraHolderScript : MonoBehaviour {
     {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksRed();
         GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
+        ConfettiP2();
     }
     public void startFireWorksP1()
     {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksBlue();
         GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
+        ConfettiP1();
+
+    }
+
+    public void ConfettiP1()
+    {
+        GameObject.FindObjectOfType<ParticleManager>().PlayConfettiP1();
+    }
+    public void ConfettiP2()
+    {
+        GameObject.FindObjectOfType<ParticleManager>().PlayConfettiP2();
 
     }
 }

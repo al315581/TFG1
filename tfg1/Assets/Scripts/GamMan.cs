@@ -181,12 +181,14 @@ public class GamMan : MonoBehaviour {
                 if(WINNER == 1)
                 {
                     P1.GetComponent<Animator>().SetTrigger("Winner");
+                    //PM.PlayConfettiP1();
                 }
                 else
                 {
                     if(WINNER == 2)
                     {
                         P2.GetComponent<Animator>().SetTrigger("Winner");
+                        //PM.PlayConfettiP2();
                     }
                 }
 
