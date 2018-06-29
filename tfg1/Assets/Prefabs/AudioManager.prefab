@@ -9,17 +9,17 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1817904174458710}
+  m_RootGameObject: {fileID: 1911518091028786}
   m_IsPrefabParent: 1
---- !u!1 &1817904174458710
+--- !u!1 &1911518091028786
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4988784564923776}
-  - component: {fileID: 114800742777799676}
+  - component: {fileID: 4902777954535690}
+  - component: {fileID: 114987117392511838}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -27,12 +27,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4988784564923776
+--- !u!4 &4902777954535690
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817904174458710}
+  m_GameObject: {fileID: 1911518091028786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,12 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114800742777799676
+--- !u!114 &114987117392511838
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817904174458710}
+  m_GameObject: {fileID: 1911518091028786}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a81c2b168355049a5b50adf5249bd7, type: 3}
@@ -80,3 +80,17 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     pitchRange: 0.5
+  - name: CinematicSound
+    clip: {fileID: 8300000, guid: 1c1b8bf31637b1a41990bf65fcac5a21, type: 3}
+    volume: 0.259
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0
+  - name: AirHorn
+    clip: {fileID: 8300000, guid: 2802ac3e620cba54a8e1665dd3308396, type: 3}
+    volume: 0.259
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0

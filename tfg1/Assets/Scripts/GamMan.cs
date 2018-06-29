@@ -693,6 +693,7 @@ public class GamMan : MonoBehaviour {
         PM.StartParticlesP1();
         GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("EnergyConcentration");
         match_started = true;
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("AirHorn");
     }
 
     private void EnvironmentChanger()
