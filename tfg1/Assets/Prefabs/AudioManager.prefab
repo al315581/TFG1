@@ -94,3 +94,17 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     pitchRange: 0
+  - name: HitBall
+    clip: {fileID: 8300000, guid: ae2749adf75abc5468845388402a297b, type: 3}
+    volume: 1
+    pitch: 1.57
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0.25
+  - name: TitleTheme
+    clip: {fileID: 8300000, guid: d4eecd8ae4f645c47af6410525362f52, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0

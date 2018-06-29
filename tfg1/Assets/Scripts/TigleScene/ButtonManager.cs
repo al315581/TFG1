@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("TitleTheme");
         Button btn = m_YourButton.GetComponent<Button>();
         Button btn2 = m_YourSecondButton.GetComponent<Button>();
     }
@@ -21,6 +22,7 @@ public class ButtonManager : MonoBehaviour {
     public void PlayButtonPressed()
     {
         print("PLAY");
+        GameObject.FindObjectOfType<AudioManager>().StopSound("TitleTheme");
         GameObject.FindObjectOfType<LevelChanger>().FadeToNextLevel();
     }
 

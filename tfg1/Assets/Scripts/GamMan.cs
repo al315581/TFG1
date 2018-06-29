@@ -200,6 +200,7 @@ public class GamMan : MonoBehaviour {
     {
         if (time_left <= 0)
         {
+            GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("AirHorn");
             ball.GetComponent<BallScript>().ballStopped = true;
             ball.GetComponent<BallScript>().hitted = false;
             RestartTimerBall();

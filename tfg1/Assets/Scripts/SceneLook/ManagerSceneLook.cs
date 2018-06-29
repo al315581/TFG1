@@ -19,6 +19,8 @@ public class ManagerSceneLook : MonoBehaviour {
     public float steerVelocity = 2f;
     public float characterSpeed = 1f;
     public float characterSpeed2 = 1f;
+
+    public bool DRAW_SCENE = false;
     void Start () {
 		
 	}
@@ -51,13 +53,17 @@ public class ManagerSceneLook : MonoBehaviour {
 
             case 3:
 
-                Vector3 relativePos1 = ball.transform.position - P1.transform.position;
-                Quaternion rotation1 = Quaternion.LookRotation(relativePos1);
-                P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation1, Time.deltaTime * steerVelocity);
+                if (!DRAW_SCENE)
+                {
+                    Vector3 relativePos1 = ball.transform.position - P1.transform.position;
+                    Quaternion rotation1 = Quaternion.LookRotation(relativePos1);
+                    P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation1, Time.deltaTime * steerVelocity);
 
-                Vector3 relativePos2 = ball.transform.position - P1.transform.position;
-                Quaternion rotation2 = Quaternion.LookRotation(relativePos1);
-                P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation2, Time.deltaTime * steerVelocity);
+                    Vector3 relativePos2 = ball.transform.position - P1.transform.position;
+                    Quaternion rotation2 = Quaternion.LookRotation(relativePos1);
+                    P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation2, Time.deltaTime * steerVelocity);
+                }
+
                 //P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation, Time.deltaTime * steerVelocity);
 
                 //P2.transform.rotation = rotation;
@@ -74,24 +80,42 @@ public class ManagerSceneLook : MonoBehaviour {
                 break;
 
             case 4:
-                Vector3 relativePos3 = ball.transform.position - P1.transform.position;
-                Quaternion rotation3 = Quaternion.LookRotation(relativePos3);
-                P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation3, Time.deltaTime * steerVelocity);
 
-                Vector3 relativePos4 = ball.transform.position - P1.transform.position;
-                Quaternion rotation4 = Quaternion.LookRotation(relativePos4);
-                P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation4, Time.deltaTime * steerVelocity);
-                /*relativePos = ball.transform.position - transform.position;
-                rotation = Quaternion.LookRotation(relativePos);
-                P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation, Time.deltaTime * steerVelocity);
-                P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation, Time.deltaTime * steerVelocity);*/
-                P1.gameObject.transform.position += P1.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
-                P2.gameObject.transform.position += P2.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
+                if (!DRAW_SCENE)
+                {
+                    Vector3 relativePos3 = ball.transform.position - P1.transform.position;
+                    Quaternion rotation3 = Quaternion.LookRotation(relativePos3);
+                    P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation3, Time.deltaTime * steerVelocity);
+
+                    Vector3 relativePos4 = ball.transform.position - P1.transform.position;
+                    Quaternion rotation4 = Quaternion.LookRotation(relativePos4);
+                    P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation4, Time.deltaTime * steerVelocity);
+                    /*relativePos = ball.transform.position - transform.position;
+                    rotation = Quaternion.LookRotation(relativePos);
+                    P1.transform.rotation = Quaternion.Slerp(P1.transform.rotation, rotation, Time.deltaTime * steerVelocity);
+                    P2.transform.rotation = Quaternion.Slerp(P2.transform.rotation, rotation, Time.deltaTime * steerVelocity);*/
+                    P1.gameObject.transform.position += P1.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
+                    P2.gameObject.transform.position += P2.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
+                }
+               /* else
+                {
+                    P1.gameObject.transform.position += P1.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
+                    P2.gameObject.transform.position += P2.gameObject.transform.forward * Time.deltaTime * characterSpeed2;
+                }
+                */
 
 
                 if (timer >= endPhase4)
                 {
-                    GameObject.FindObjectOfType<LevelChanger>().FadeToNextLevel();
+                    if (!DRAW_SCENE)
+                    {
+                        GameObject.FindObjectOfType<LevelChanger>().FadeToNextLevel();
+
+                    }
+                    else
+                    {
+                        GameObject.FindObjectOfType<LevelChanger>().FadeToLevel(0);
+                    }
                 }
 
                 break;

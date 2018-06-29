@@ -142,6 +142,7 @@ public class PlayerMovement : MonoBehaviour {
         if (ballSript.playerNear && isHitting)
         {
             GM.ShakeCameraPlayerHits();
+            GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("HitBall");
 
             ballSript.ChangeMaterial(this.gameObject.name);
             //ball.transform.rotation = transform.rotation;
