@@ -62,6 +62,9 @@ public class GamMan : MonoBehaviour {
 
     public int WINNER = 0;
 
+    public float TimeShowingWinner = 7f;
+    public float timerEnd = 0f;
+
     // Use this for initialization
     void Start() {
         TimerScript.matchTime = MATCH_TIME;
@@ -177,7 +180,11 @@ public class GamMan : MonoBehaviour {
                 break;
 
             case stateOfMatch.endGame:
-
+                timerEnd += Time.deltaTime;
+                if(timerEnd >= TimeShowingWinner)
+                {
+                    GameObject.FindObjectOfType<LevelChanger>().FadeToLevel(0);
+                }
                 if(WINNER == 1)
                 {
                     P1.GetComponent<Animator>().SetTrigger("Winner");
@@ -210,6 +217,7 @@ public class GamMan : MonoBehaviour {
             if (ScoreP1Script.scoreP1 == ScoreP2Script.scoreP2) //Draw
             {
                 //completar empate
+                GameObject.FindObjectOfType<LevelChanger>().FadeToNextLevel();
             }
             else
             {

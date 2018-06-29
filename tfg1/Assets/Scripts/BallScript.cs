@@ -131,13 +131,13 @@ public class BallScript : MonoBehaviour {
         auxRay.direction = aux;
         if (Physics.Raycast(auxRay, out auxHit, range, wallMask))
         {
-            print(auxHit.transform.position);
+            //print(auxHit.transform.position);
             if(auxHit.transform.position.x <= 0) //Ray hits in the left.
             {
                 if(gamMan.currentSideOfBall == 2)
                 {
                     //print("Current side: "+ gamMan);
-                    print(auxHit.transform.position.x);
+                    //print(auxHit.transform.position.x);
                     print("DIBUJAMOS");
                     gamMan.DontLetTheBallCross();
                     return true;
