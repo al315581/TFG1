@@ -24,6 +24,12 @@ public class ParticleManager : MonoBehaviour {
 
 
     public ParticleSystem wallSparks;
+
+
+    public ParticleSystem HitBall;
+
+    public ParticleSystem WallPoof;
+
     // Use this for initialization
     void Start() {
 
@@ -275,6 +281,8 @@ public class ParticleManager : MonoBehaviour {
         wallSparks.transform.position = pos.position;
         wallSparks.transform.rotation = rot;
         wallSparks.Play();
+
+        PlayWallPoof(pos);
     }
 
     public void PlayConfettiP1()
@@ -285,5 +293,17 @@ public class ParticleManager : MonoBehaviour {
     public void PlayConfettiP2()
     {
         confettiP2.SetActive(true);
+    }
+
+    public void PlayerHitsBall(Transform t)
+    {
+        HitBall.transform.position = t.position;
+        HitBall.Play();
+    }
+
+    public void PlayWallPoof(Transform t)
+    {
+        WallPoof.transform.position = t.position;
+        WallPoof.Play();
     }
 }
