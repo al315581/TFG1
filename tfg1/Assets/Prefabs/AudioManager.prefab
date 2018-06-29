@@ -88,9 +88,9 @@ MonoBehaviour:
     source: {fileID: 0}
     pitchRange: 0
   - name: AirHorn
-    clip: {fileID: 8300000, guid: 2802ac3e620cba54a8e1665dd3308396, type: 3}
-    volume: 0.259
-    pitch: 1
+    clip: {fileID: 8300000, guid: 3a3a0aebfeb5c774fa900d208796e22d, type: 3}
+    volume: 0.54
+    pitch: 1.2
     loop: 0
     source: {fileID: 0}
     pitchRange: 0
