@@ -108,3 +108,10 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     pitchRange: 0
+  - name: ButtonPressed
+    clip: {fileID: 8300000, guid: c6cd9a94713e108439dffa1e006aa3c3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0

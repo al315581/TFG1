@@ -23,6 +23,8 @@ public class ButtonManager : MonoBehaviour {
     {
         print("PLAY");
         GameObject.FindObjectOfType<AudioManager>().StopSound("TitleTheme");
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("ButtonPressed");
+
         GameObject.FindObjectOfType<LevelChanger>().FadeToNextLevel();
     }
 
