@@ -103,7 +103,7 @@ MonoBehaviour:
     pitchRange: 0.25
   - name: TitleTheme
     clip: {fileID: 8300000, guid: d4eecd8ae4f645c47af6410525362f52, type: 3}
-    volume: 0.5
+    volume: 0.445
     pitch: 1
     loop: 0
     source: {fileID: 0}
