@@ -115,6 +115,8 @@ public class ManagerSceneLook : MonoBehaviour {
                     else
                     {
                         GameObject.FindObjectOfType<LevelChanger>().FadeToLevel(0);
+                        GameObject.FindObjectOfType<AudioManager>().StopSound("TitleTheme");
+
                     }
                 }
 

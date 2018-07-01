@@ -183,6 +183,9 @@ public class GamMan : MonoBehaviour {
                 timerEnd += Time.deltaTime;
                 if(timerEnd >= TimeShowingWinner)
                 {
+                    GameObject.FindObjectOfType<AudioManager>().StopSound("Fireworks");
+                    GameObject.FindObjectOfType<AudioManager>().StopSound("TitleTheme");
+
                     GameObject.FindObjectOfType<LevelChanger>().FadeToLevel(0);
                 }
                 if(WINNER == 1)

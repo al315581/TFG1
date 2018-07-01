@@ -5524,6 +5524,10 @@ Prefab:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19800568, guid: 1720f2c1867206149a7c64de30295781, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1720f2c1867206149a7c64de30295781, type: 2}
   m_IsPrefabParent: 0
@@ -6998,6 +7002,10 @@ Prefab:
     - target: {fileID: 19833906, guid: 04afa0837ed4c8a4b9d1fa5e184d6e68, type: 2}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800568, guid: 04afa0837ed4c8a4b9d1fa5e184d6e68, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04afa0837ed4c8a4b9d1fa5e184d6e68, type: 2}

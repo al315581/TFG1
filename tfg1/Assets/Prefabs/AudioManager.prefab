@@ -115,3 +115,10 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     pitchRange: 0
+  - name: Fireworks
+    clip: {fileID: 8300000, guid: 42d2a987167183c4a8c319d25c36c34d, type: 3}
+    volume: 1
+    pitch: 0.9
+    loop: 0
+    source: {fileID: 0}
+    pitchRange: 0

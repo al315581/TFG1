@@ -30,12 +30,15 @@ public class CameraHolderScript : MonoBehaviour {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksRed();
         GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
         ConfettiP2();
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("Fireworks");
     }
     public void startFireWorksP1()
     {
         GameObject.FindObjectOfType<ParticleManager>().StartFireworksBlue();
         GameObject.FindObjectOfType<WinnerTextScript>().WinnerTextStart();
         ConfettiP1();
+        GameObject.FindObjectOfType<AudioManager>().PlayRandomPitch("Fireworks");
+
 
     }
 
