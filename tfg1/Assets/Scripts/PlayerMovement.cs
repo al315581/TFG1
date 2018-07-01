@@ -176,12 +176,12 @@ public class PlayerMovement : MonoBehaviour {
 
     public void EndAttack()
     {
-        print("Acaba ataque");
+        //print("Acaba ataque");
         isHitting = false;
     }
     public void StartAttack()
     {
-        print("Empieza ataque");
+        //print("Empieza ataque");
         isHitting = true;
     }
 

@@ -138,7 +138,7 @@ public class BallScript : MonoBehaviour {
                 {
                     //print("Current side: "+ gamMan);
                     //print(auxHit.transform.position.x);
-                    print("DIBUJAMOS");
+                    //print("DIBUJAMOS");
                     gamMan.DontLetTheBallCross();
                     return true;
                 }
@@ -200,7 +200,7 @@ public class BallScript : MonoBehaviour {
         if (p == "P1")
         {
             ChangeMaterialToP1();
-            print("cambiamos material a p1");
+            //print("cambiamos material a p1");
         }
         else ChangeMaterialToP2();
     }

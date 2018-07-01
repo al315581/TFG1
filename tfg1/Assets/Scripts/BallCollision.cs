@@ -60,14 +60,14 @@ public class BallCollision : MonoBehaviour {
         result = Vector3.Angle(ball.transform.forward, aux.forward);
         //print(result);
         if (result < 90) {
-            print("detrás");
+            //print("detrás");
             go.GetComponent<PlayerMovement>().HittedBack();
 
         } 
         else
         {
             go.GetComponent<PlayerMovement>().HittedFront();
-            print("delante");
+            //print("delante");
 
         } 
     }

@@ -25,10 +25,12 @@ public class CameraMovement : MonoBehaviour {
         {
             LC.FadeToNextLevel();
         }
-        transform.LookAt(target);
         transform.Translate(Vector3.right * Time.deltaTime * velocityRotation);
         target.Translate(Vector3.up * Time.deltaTime * velocityUp);
         transform.Translate(Vector3.up * Time.deltaTime * velocityUp);
         transform.Translate(Vector3.back * Time.deltaTime * velocityBack);
-	}
+        transform.LookAt(target);
+
+    }
+
 }

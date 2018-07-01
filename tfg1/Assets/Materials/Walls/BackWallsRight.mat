@@ -85,8 +85,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_B11E0E63: {r: 1, g: 0.47509208, b: 0.41037738, a: 0}
-    - Color_D028D1AD: {r: 4.332708, g: 0.22684334, b: 0, a: 0}
+    - Color_B11E0E63: {r: 1, g: 0.4481132, b: 0.4643236, a: 0}
+    - Color_D028D1AD: {r: 4.3327084, g: 0.13610603, b: 0, a: 0}
     - Vector2_6987868C: {r: 0.02, g: 0.05, b: 0.001, a: 0.1}
     - _Color: {r: 0.8867924, g: 0.29699183, b: 0.29699183, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

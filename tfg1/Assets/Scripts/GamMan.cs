@@ -184,7 +184,7 @@ public class GamMan : MonoBehaviour {
                 if(timerEnd >= TimeShowingWinner)
                 {
                     GameObject.FindObjectOfType<AudioManager>().StopSound("Fireworks");
-                    GameObject.FindObjectOfType<AudioManager>().StopSound("TitleTheme");
+                    GameObject.FindObjectOfType<AudioManager>().StopSound("CinematicSound");
 
                     GameObject.FindObjectOfType<LevelChanger>().FadeToLevel(0);
                 }
@@ -314,7 +314,7 @@ public class GamMan : MonoBehaviour {
             //P1.GetComponent<PlayerMovement>().defeated = false;
             P1.transform.position = P1initialPosition.position;
             P1.transform.rotation = P1initialPosition.rotation;
-            print("BREACKPOINT1");
+            //print("BREACKPOINT1");
             P1.GetComponent<PlayerMovement>().isOnGround = true;
 
             //P1.GetComponent<PlayerMovement>().RestartAnimations();

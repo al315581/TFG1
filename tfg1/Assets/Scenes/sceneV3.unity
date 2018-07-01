@@ -1539,7 +1539,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 261264126}
   m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 26.8, z: -40.5}
+  m_LocalPosition: {x: 0, y: 30, z: -40.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 282840814}
@@ -1756,7 +1756,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1127793a448a5164486989c6508baa1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MATCH_TIME: 15
+  MATCH_TIME: 100
   time_left: 100
   match_started: 0
   ball: {fileID: 1819269158}
@@ -3072,7 +3072,7 @@ MonoBehaviour:
   dissolving: 0
   timeToStartRaining: 50
   timeToEndRaining: 30
-  ppNightMax: 40
+  ppNightMax: 50
   ppNightMin: 30
   postProcessingNight: {fileID: 525622845}
   WinPointP1: {fileID: 1362599362}
